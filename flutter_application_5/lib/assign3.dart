@@ -16,7 +16,7 @@ class _Assign3State extends State<Assign3>{
 
   void showNextImage(){
     setState(() {
-      if(selectedIndex!<imageList.length){
+      if(selectedIndex!<imageList.length-1){
         selectedIndex= selectedIndex!+1;
       }
     });
