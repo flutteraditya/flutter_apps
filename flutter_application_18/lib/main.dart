@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(const MainApp());
 }
@@ -27,11 +26,11 @@ class TextFieldDemo extends StatefulWidget{
 class _TextFieldDemoState extends State{
 
   List info = [
-    // {
-    //   "name": "",
-    //   "company" : "",
-    //   "address": "",
-    // }
+    {
+      "name": "",
+      "company" : "",
+      "address": "",
+    }
   ];
 
   final TextEditingController _nameTEC = TextEditingController();
@@ -46,7 +45,13 @@ class _TextFieldDemoState extends State{
 
   void setData(){
 
-      info.add({"name":_nameTEC.text,"company":_companyTEC.text,"address":_addressTEC.text});
+      info.add(
+        {
+          "name":_nameTEC.text,
+          "company":_companyTEC.text,
+          "address":_addressTEC.text
+        }
+      );
   }
 
   @override
@@ -98,6 +103,7 @@ class _TextFieldDemoState extends State{
             height: 30,
           ),
           TextField(
+            
             controller: _addressTEC,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -121,8 +127,12 @@ class _TextFieldDemoState extends State{
                   setData();
                 });
               }
-            }, 
+            },
             child: const Text("submit"),
+          ),
+          const SizedBox(
+            width: double.infinity,
+            height: 20,
           ),
           
           ListView.builder(
@@ -134,10 +144,22 @@ class _TextFieldDemoState extends State{
               return Container(
                 //height: 300,
                 //width: 100,
-                margin: const EdgeInsets.all(30),
-                padding: const EdgeInsets.all(30),
-                //width: double.infinity,
-                color: Colors.grey,
+                margin: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
+                //color: Colors.grey,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey,
+                //   gradient: RadialGradient(
+                //     radius: 1,
+                //     //focalRadius: 10,
+                //     colors: [
+                //     Colors.red,
+                //     Colors.green,
+                //     Colors.blue,
+                //   ]
+                // ),
+                ),
                 child: Row( 
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -153,7 +175,11 @@ class _TextFieldDemoState extends State{
                     ),
                     Column(
                       children:[
-                        Image.network("https://study.com/cimages/multimages/16/pexels-zetong-li-13641595_11670684066233696586.jpg",height: 100,width: 100,),
+                        Image.network(
+                          "https://study.com/cimages/multimages/16/pexels-zetong-li-13641595_11670684066233696586.jpg",
+                          height: 100,
+                          width: 100,
+                        ),
                       ],
                     ),
                   ]

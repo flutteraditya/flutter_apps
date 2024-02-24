@@ -68,6 +68,7 @@ class _ToDoListState extends State{
       ),
       body: ListView.builder(
         itemCount: val,
+        //reverse: true,
         itemBuilder: (BuildContext context,int index){
           return Container(
             width: double.infinity,
