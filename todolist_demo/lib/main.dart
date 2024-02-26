@@ -28,28 +28,37 @@ class ToDoListDemo extends StatefulWidget{
 class _ToDoListState extends State{
 
   List str = [
-    {
-      "title" : "Lorem Ipsum is simply setting industry.",
-      "content": "Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    }
-    ];
-    int val = 0;
+    // {
+    //   "title" : "Lorem Ipsum is simply setting industry.",
+    //   "content": "Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+    // }
+  ];
+  int val = 0;
+  TextEditingController title = TextEditingController();
+  TextEditingController content = TextEditingController();
+
 
   Color containerColor(int index){
     //index = index + 1;
     //print(index);
      if(index%4 == 3 ){
-      return const Color.fromARGB(249, 156, 238, 222);
+      return const Color.fromRGBO(250, 232, 250, 1);
     }
     else if(index%4 == 2){
-      return const Color.fromARGB(249, 231, 198, 244);
+      return const Color.fromRGBO(250, 249, 232, 1);
     }
     else if(index%4 == 1){
-      return const Color.fromARGB(232, 228, 155, 184);
+      return const Color.fromRGBO(232, 237, 250, 1);
     }
-    return const Color.fromARGB(250, 232, 232, 1);
+    return const Color.fromRGBO(250, 232, 232, 1);
   }
 
+  void addTask(){
+    str.add({"title": title.text,"content": content.text});
+  }
+  void deleteTask(int index){
+    str.removeAt(index);
+  }
   @override
   Widget build(BuildContext context){
 
@@ -67,7 +76,7 @@ class _ToDoListState extends State{
         backgroundColor: const Color.fromRGBO(2, 167, 177, 1),
       ),
       body: ListView.builder(
-        itemCount: val,
+        itemCount: str.length,
         //reverse: true,
         itemBuilder: (BuildContext context,int index){
           return Container(
@@ -97,7 +106,7 @@ class _ToDoListState extends State{
                       children: [
                         SizedBox(
                           width: 350,
-                          child: Text(str[0]["title"],
+                          child: Text(str[index]["title"],
                           style: GoogleFonts.quicksand(
                           //style: TextStyle(
                             color: Colors.black,
@@ -109,7 +118,7 @@ class _ToDoListState extends State{
                         const SizedBox(height: 10,),
                         SizedBox(
                           width: 350,
-                          child: Text(str[0]["content"],
+                          child: Text(str[index]["content"],
                           style: GoogleFonts.quicksand(
                           //style: TextStyle(
                             color: const Color.fromARGB(255, 84, 69, 69),
@@ -144,16 +153,19 @@ class _ToDoListState extends State{
                       icon: const Icon(
                         Icons.edit_outlined,
                         size: 20,
-                        color: Colors.blueGrey,
+                        color: Color.fromRGBO(0, 139, 148, 1),
                       ),
                     ),
                     //const SizedBox(width: 10,),
                     IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        deleteTask(index);
+                        setState((){});
+                      },
                       icon: const Icon(
                         Icons.delete_outline,
                         size: 20,
-                        color: Colors.blueGrey,
+                        color: Color.fromRGBO(0, 139, 148, 1),
                       ),
                     ),
                     //SizedBox(width: 10,),
@@ -167,12 +179,79 @@ class _ToDoListState extends State{
 
         }
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     setState(() {
+      //       val++;
+      //     });
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          setState(() {
-            val++;
-          });
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context){
+              return Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Create Task",
+                    style: GoogleFonts.quicksand(
+                      //color: const Color.fromARGB(0,0,0,1),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: title,
+                    decoration: InputDecoration(
+                      hintText: "enter title",
+                      border:OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Color.fromRGBO(0, 139, 148, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: content,
+                    decoration: InputDecoration(
+                      hintText: "enter massage",
+                      border:OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Color.fromRGBO(0, 139, 148, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                      addTask();
+                      setState((){});
+                    }, 
+                    child: const Text("submit"),
+                    )
+                ],
+              );
+            
+            }
+          );
         },
+        shape: const CircleBorder(),
         child: const Icon(Icons.add),
       ),
     );

@@ -18,18 +18,33 @@ class _SearchState extends State<Search>{
         automaticallyImplyLeading: false,
         title: Container(
          // color: Colors.grey,
+          height: 30,
+          width: 360,
           decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10),),
+            borderRadius: BorderRadius.all(Radius.circular(20),),
             color: Colors.grey,
           ),
-          child: const Row(
-            children: [
-              SizedBox(width: 10,height: 30,),
-              Icon(Icons.search,size: 15,),
-              SizedBox(width: 10,),
-              Text("Search",style: TextStyle(fontSize: 10),)
-            ],
-          ),
+           child: //const Row(
+          //   children: [
+          //     SizedBox(width: 10,height: 30,),
+          //     Icon(Icons.search,size: 15,),
+          //     SizedBox(width: 10,),
+              //Text("Search",style: TextStyle(fontSize: 10),)
+              TextField(
+                strutStyle: StrutStyle(
+                  leading: 0,
+                ),
+                cursorHeight: 20,
+                decoration: InputDecoration(
+                  hintText: "search",
+                  icon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius:BorderRadius.circular(20) 
+                  ),
+                ),
+              ),
+           // ],
+          //),
         ),
         backgroundColor: Colors.black,
 
