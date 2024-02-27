@@ -25,6 +25,12 @@ class ToDoListDemo extends StatefulWidget{
   State createState() => _ToDoListState();
 }
 
+class ModelDemo{
+  String title;
+  String content;
+  ModelDemo(this.title,this.content);
+}
+
 class _ToDoListState extends State{
 
   List str = [
@@ -53,8 +59,82 @@ class _ToDoListState extends State{
     return const Color.fromRGBO(250, 232, 232, 1);
   }
 
+  void bottomSheetDemo(int index){
+    showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context){
+              return Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Create Task",
+                    style: GoogleFonts.quicksand(
+                      //color: const Color.fromARGB(0,0,0,1),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: title,
+                    decoration: InputDecoration(
+                      hintText: "enter title",
+                      border:OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Color.fromRGBO(0, 139, 148, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: content,
+                    decoration: InputDecoration(
+                      hintText: "enter massage",
+                      border:OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Color.fromRGBO(54, 72, 87, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                      if(index == -1){
+                        addTask();
+                      }
+                      else{
+                        editTask(index);
+
+                        }
+                        setState((){});
+                    }, 
+                    child: const Text("submit"),
+                    )
+                ],
+              );
+            
+            }
+          );
+  }
+
   void addTask(){
-    str.add({"title": title.text,"content": content.text});
+    str.add(ModelDemo( title.text, content.text));
+  }
+  void editTask(int index){
+    str[index].title = title.text;
+    str[index].content = content.text;
   }
   void deleteTask(int index){
     str.removeAt(index);
@@ -106,7 +186,7 @@ class _ToDoListState extends State{
                       children: [
                         SizedBox(
                           width: 350,
-                          child: Text(str[index]["title"],
+                          child: Text(str[index].title,
                           style: GoogleFonts.quicksand(
                           //style: TextStyle(
                             color: Colors.black,
@@ -118,7 +198,7 @@ class _ToDoListState extends State{
                         const SizedBox(height: 10,),
                         SizedBox(
                           width: 350,
-                          child: Text(str[index]["content"],
+                          child: Text(str[index].content,
                           style: GoogleFonts.quicksand(
                           //style: TextStyle(
                             color: const Color.fromARGB(255, 84, 69, 69),
@@ -149,7 +229,9 @@ class _ToDoListState extends State{
                     ),
                     const Spacer(),
                     IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        bottomSheetDemo(index);
+                      },
                       icon: const Icon(
                         Icons.edit_outlined,
                         size: 20,
@@ -189,67 +271,7 @@ class _ToDoListState extends State{
       // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context){
-              return Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Create Task",
-                    style: GoogleFonts.quicksand(
-                      //color: const Color.fromARGB(0,0,0,1),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: title,
-                    decoration: InputDecoration(
-                      hintText: "enter title",
-                      border:OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
-                          color: Color.fromRGBO(0, 139, 148, 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: content,
-                    decoration: InputDecoration(
-                      hintText: "enter massage",
-                      border:OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
-                          color: Color.fromRGBO(0, 139, 148, 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: (){
-                      addTask();
-                      setState((){});
-                    }, 
-                    child: const Text("submit"),
-                    )
-                ],
-              );
-            
-            }
-          );
+          bottomSheetDemo(-1);
         },
         shape: const CircleBorder(),
         child: const Icon(Icons.add),
@@ -257,3 +279,4 @@ class _ToDoListState extends State{
     );
   }
 }
+
