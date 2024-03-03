@@ -262,6 +262,7 @@ class _ToDoListState extends State {
       appBar: AppBar(
         shadowColor: Colors.grey,
         elevation: 10,
+        automaticallyImplyLeading: false,
         title: Text(
           "To-Do List",
           style: GoogleFonts.quicksand(
