@@ -27,6 +27,7 @@ class _LogInPageState extends State{
   TextEditingController passwordController = TextEditingController();
 
   bool isSignUp = false;
+  bool showPassword = false;
 
   bool isValidateUser(TextEditingController userNameController,TextEditingController passwordController){
     for(int i=0;i<validUsers.length;i++){
@@ -87,6 +88,8 @@ class _LogInPageState extends State{
                 const SizedBox(height: 30,),
                 TextFormField(
                   controller: passwordController,
+                  obscureText: !showPassword,
+                  obscuringCharacter: "*",
                   validator: (value){
                     if(value == null || value.isEmpty){
                       return "Please Enter Password";
@@ -96,7 +99,16 @@ class _LogInPageState extends State{
                   },
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: const Icon(Icons.remove_red_eye_outlined),
+                    suffixIcon: GestureDetector( 
+                      onTap: () {
+                        showPassword = !showPassword;
+                        setState(() {
+                        });
+                      },
+                    child: showPassword ? 
+                      const Icon(Icons.remove_red_eye) :
+                      const Icon(Icons.remove_red_eye_outlined),
+                    ),
                     label: const Text("Enter Password"),
                     hintText: "password",
                     border: OutlineInputBorder(
