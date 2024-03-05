@@ -171,6 +171,27 @@ class _LogInPageState extends State{
                     child: const Text("Log In"),
                   ),
                 ),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Don't have account ? "),
+                    GestureDetector(
+                      onTap: () {
+                        isSignUp = true;
+                        setState(() {
+                          
+                        });
+                      },
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          color: Colors.blue
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -178,7 +199,162 @@ class _LogInPageState extends State{
       ),
     ) : 
     Scaffold(
-      
+      body: Container(
+        color: const Color.fromRGBO(232, 237, 250, 1),
+        child: Form(
+          key: globalKey,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 50,
+              right: 50,
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 30,),
+                Image.asset(
+                  "images/user.png",
+                  height: 100,
+                ),
+                const SizedBox(height: 20,),
+                const Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 60,),
+                TextFormField(
+                  controller: userNameController,
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Please Enter Username";
+                    }else{
+                      return null;
+                    }
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.person_outline),
+                    label: const Text("Enter Username"),
+                    hintText: "username",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30,),
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: !showPassword,
+                  obscuringCharacter: "*",
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Please Enter Password";
+                    }else{
+                      return null;
+                    }
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    suffixIcon: GestureDetector( 
+                      onTap: () {
+                        showPassword = !showPassword;
+                        setState(() {
+                        });
+                      },
+                    child: showPassword ? 
+                      const Icon(Icons.remove_red_eye) :
+                      const Icon(Icons.remove_red_eye_outlined),
+                    ),
+                    label: const Text("Enter Password"),
+                    hintText: "password",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30,),
+                Container(
+                  width: double.infinity,
+                  height: 50,
+                  //color: const Color.fromRGBO(2, 167, 177, 1),
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(2, 167, 177, 1),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: (){
+                      bool isVal = globalKey.currentState!.validate();
+
+                      if(isVal){
+                        bool isValidate = isValidateUser(userNameController,passwordController);
+
+                        if(isValidate){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ToDoList(),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Log In Successful!"),
+                            ),
+                          );
+                        }else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Invalid Username or Password")
+                            ),
+                          );
+                        }
+                      }
+                      else{
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please Enter Username or Password"),
+                          ),
+                        );
+                      }
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                         Color.fromRGBO(2, 167, 177, 1),
+                      ),
+                      foregroundColor: MaterialStatePropertyAll(
+                        Color.fromRGBO(232, 237, 250, 1),
+                      ),
+                    ),
+                    child: const Text("Log In"),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Already have account ? "),
+                    GestureDetector(
+                      onTap: () {
+                        isSignUp = false;
+                        setState(() {
+                          
+                        });
+                      },
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          color: Colors.blue
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
