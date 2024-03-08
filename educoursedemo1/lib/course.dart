@@ -39,9 +39,12 @@ class _CourseState extends State{
                 top: 47,
                 left: 20,
               ),
-              child: const Icon(
-                Icons.arrow_back,
-                color: Color.fromRGBO(255, 255, 255, 1),
+              child:GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                ),
               ),
             ),
             const SizedBox(
@@ -82,6 +85,7 @@ class _CourseState extends State{
                         Container(
                           height: 34,
                           width: 34,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: const Color.fromRGBO(0, 82, 178, 1),
                             borderRadius: BorderRadius.circular(30),
@@ -89,6 +93,7 @@ class _CourseState extends State{
                               color: Colors.white
                             ),
                           ),
+                          child: SvgPicture.asset("images/person.svg"),
                         ),
                         const SizedBox(
                           width: 5,
@@ -137,121 +142,100 @@ class _CourseState extends State{
                         ),
                       ],
                     ),
-                    // Expanded(
-                    //   child: Container(
-                    //     width: double.infinity,
-                    //     margin: const EdgeInsets.only(top: 30),
-                    //     decoration: const BoxDecoration(
-                    //       borderRadius: BorderRadius.only(
-                    //         topLeft: Radius.circular(38),
-                    //         topRight: Radius.circular(38)
-                    //       ),
-                    //     ),
-                    //     child: ListView.builder(
-                    //       itemBuilder: (context,index){
-                    //         return Container(
-                    //           margin: const EdgeInsets.only(
-                    //             right: 30,
-                    //             left: 30,
-                    //             bottom: 30,
-                    //           ),
-                    //         );
-                    //       }
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
 
             ),
             Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.only(top: 30),
-                        margin: const EdgeInsets.only(top: 30),
-                        decoration: const BoxDecoration(
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(38),
-                            topRight: Radius.circular(38)
-                          ),
-                        ),
-                        child: ListView.builder(
-                          itemBuilder: (context,index){
-                            return Container(
-                              width: double.infinity,
-                              height: 70,
-                              margin: const EdgeInsets.only(
-                                right: 30,
-                                left: 30,
-                                bottom: 20,
-                              ),
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.15),
-                                    blurRadius: 40,
-                                    spreadRadius: 0,
-                                    offset: Offset(0, 8)
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 60,
-                                    width: 46,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 11,
-                                      vertical: 18
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(230, 239, 239, 1),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: SvgPicture.asset("images/youtube.svg"),
-                                  ),
-                                  const SizedBox(
-                                    width: 7,
-                                  ),
-                                  const Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Introduction",
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w500,
-                                            //height: 1.5,
-                                            color: Color.fromRGBO(0, 0, 0, 1),
-                                          ),
-                                          maxLines: 1,
-                                        ),
-                                        Text(
-                                          "Lorem Ipsum is simply dummy text ... ",
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            //height: 1.5,
-                                            color: Color.fromRGBO(143, 143, 143, 1),
-                                          ),
-                                          maxLines: 1,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }
-                        ),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(top: 20,bottom: 20),
+                margin: const EdgeInsets.only(top: 30),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(38),
+                    topRight: Radius.circular(38)
+                  ),
+                ),
+                child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context,index){
+                    return Container(
+                      width: double.infinity,
+                      height: 70,
+                      margin: const EdgeInsets.only(
+                        right: 30,
+                        left: 30,
+                        bottom: 10,
+                        top: 10,
                       ),
-                    ),
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(255, 255, 255, 1),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.15),
+                            blurRadius: 40,
+                            spreadRadius: 0,
+                            offset: Offset(0, 8)
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 46,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 11,
+                              vertical: 18
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(230, 239, 239, 1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: SvgPicture.asset("images/youtube.svg"),
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Introduction",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                    //height: 1.5,
+                                    color: Color.fromRGBO(0, 0, 0, 1),
+                                  ),
+                                  maxLines: 1,
+                                ),
+                                Text(
+                                  "Lorem Ipsum is simply dummy text ... ",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    //height: 1.5,
+                                    color: Color.fromRGBO(143, 143, 143, 1),
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                ),
+              ),
+            ),
           ],
         ),
       ),

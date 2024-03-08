@@ -1,4 +1,4 @@
-import 'package:educoursedemo1/course.dart';
+// import 'package:educoursedemo1/course.dart';
 import 'package:educoursedemo1/educorse.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Course(),
+      home: EduCourse(),
       debugShowCheckedModeBanner: false,
     );
   }

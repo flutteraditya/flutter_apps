@@ -1,3 +1,4 @@
+import 'package:educoursedemo1/course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -119,7 +120,7 @@ class _EduCourseState extends State{
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 33,
+                  vertical: 20,
                 ),
                 decoration: const BoxDecoration(
                   color: Color.fromRGBO(255, 255, 255, 1),
@@ -130,6 +131,9 @@ class _EduCourseState extends State{
                 ),
                 child: ListView(
                   children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
                     const Text(
                       "Course For You",
                       style: TextStyle(
@@ -145,45 +149,55 @@ class _EduCourseState extends State{
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          Container(
-                            height: 242,
-                            width: 190,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 22,
-                              vertical: 20,
-                            ),
-                            margin: const EdgeInsets.only(
-                              right: 20,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(14),
-                              gradient: const LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color.fromRGBO(197, 4, 98, 1),
-                                  Color.fromRGBO(80, 3, 112, 1),
-                                ],
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context)=> const Course(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              height: 242,
+                              width: 190,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 22,
+                                vertical: 20,
                               ),
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  child: Text(
-                                    "UX Designer from Scratch.",
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color.fromRGBO(255, 255, 255, 1),
+                              margin: const EdgeInsets.only(
+                                right: 20,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color.fromRGBO(197, 4, 98, 1),
+                                    Color.fromRGBO(80, 3, 112, 1),
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    child: Text(
+                                      "UX Designer from Scratch.",
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 154,
-                                  width: 154,
-                                  child: Image.asset("images/image1.png"),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 154,
+                                    width: 154,
+                                    child: Image.asset("images/image1.png"),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                       
