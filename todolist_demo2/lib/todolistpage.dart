@@ -1,6 +1,9 @@
+
 import "package:flutter/material.dart";
 //import "package:flutter/widgets.dart";
 //import "package:google_fonts/google_fonts.dart";
+import 'package:intl/intl.dart';
+import 'main.dart';
 
 class ToDoListPage extends StatefulWidget {
   const ToDoListPage({super.key});
@@ -20,26 +23,61 @@ class NotesModelClass {
     required this.description,
     required this.date,
   });
+
+  Map<String,String> retMap(){
+    return 
+    {
+      "title": title,
+      "describe": description,
+      "date": date,
+    };
+  }
+
+  @override
+  String toString(){
+    return "{$title $description $date}";
+  }
 }
 
+List toDoList =  [];
 class _ToDoListPageState extends State {
-  List toDoList = [
-    NotesModelClass(
-      title: "title",
-      description: "description",
-      date: "date",
-    ),
-  ];
 
-  void showBottomSheetDemo(){
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController describeController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+
+  void onSubmit(bool isEdit,NotesModelClass? notes){
+
+    if(isEdit){
+
+    }else{
+      insertData(
+        NotesModelClass(
+          title: titleController.text, 
+          description: describeController.text, 
+          date: dateController.text
+        ),
+      );
+    }
+  }
+
+  void showBottomSheetDemo(bool isEdit,[NotesModelClass? notes]){
     showModalBottomSheet(
+      //isScrollControlled: true, //need for bottom
       context: context, 
       builder: (context){
 
         return Padding(
-          padding: const EdgeInsets.all(15),
-          child: Container(
+          padding: EdgeInsets.only(
+            right: 15,
+            left: 15,
+            top: 15,
+            bottom: MediaQuery.of(context).viewInsets.bottom
+          ),
+          child: SizedBox(
             child: Column(
+              //mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
                   "Create To-Do",
@@ -50,8 +88,10 @@ class _ToDoListPageState extends State {
                   ),
                 ),
                 Form(
+                  key: formKey,
                   child: Expanded(
                     child: ListView(
+                      shrinkWrap: true,
                       children:[
                         const SizedBox(
                           height: 10,
@@ -65,14 +105,22 @@ class _ToDoListPageState extends State {
                           ),
                         ),
                         TextFormField(
+                          controller: titleController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color.fromRGBO(89, 57, 241, 1),
                               ),
                             ),
                           ),
+                          validator: (value) {
+                            if(value==null || value.isEmpty){
+                              return "please enter title";
+                            }else{
+                              return null;
+                            }
+                          },
                         ),
                         const SizedBox(
                           height: 10,
@@ -86,7 +134,23 @@ class _ToDoListPageState extends State {
                           ),
                         ),
                         TextFormField(
-
+                          controller: describeController,
+                          maxLines: 4,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(89, 57, 241, 1),
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if(value==null || value.isEmpty){
+                              return "please enter description";
+                            }else{
+                              return null;
+                            }
+                          },
                         ),
                         const SizedBox(
                           height: 10,
@@ -100,7 +164,70 @@ class _ToDoListPageState extends State {
                           ),
                         ),
                         TextFormField(
+                          controller: dateController,
+                          readOnly: true,
+                          onTap: () async{
+                            DateTime? selectedDate = await showDatePicker(
+                              context: context, 
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2024), 
+                              lastDate: DateTime(2025),
+                            );
+                            String dateStr = DateFormat.yMMMd().format(selectedDate!);
+                            dateController.text= dateStr;
+                            setState(() {});
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: const Icon(Icons.calendar_month_outlined),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(89, 57, 241, 1),
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if(value==null || value.isEmpty){
+                              return "please select date";
+                            }else{
+                              return null;
+                            }
+                          },
+                        ),
+                        Container(
+                          height: 50,
+                          width: double.infinity,
+                          // foregroundDecoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.circular(10),
+                          //   color: Color.fromRGBO(89, 57, 241, 1),
+                          // ),
+                          margin: const EdgeInsets.symmetric(vertical: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromRGBO(89, 57, 241, 1),
+                          ),
+                          child: ElevatedButton(
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                Color.fromRGBO(89, 57, 241, 1),
+                              ),
+                            ),
+                            onPressed: () {
+                              bool isValidate = formKey.currentState!.validate();
 
+                              if(isValidate){
+                                onSubmit(isEdit,notes);
+                              }
+                            },
+                            child: const Text(
+                              "Submit",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -309,7 +436,7 @@ class _ToDoListPageState extends State {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showBottomSheetDemo();
+          showBottomSheetDemo(false);
         },
         backgroundColor: const Color.fromRGBO(89, 57, 241, 1),
         shape: const CircleBorder(),
