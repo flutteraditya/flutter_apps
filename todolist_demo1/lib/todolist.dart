@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
+//google_fonts: ^6.1.0
 import 'package:intl/intl.dart';
 
 class ToDoList extends StatefulWidget {
@@ -94,7 +95,8 @@ class _ToDoListState extends State {
                   "Edit Task" :
                   "Create Task" ,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.quicksand(
+                  //style: GoogleFonts.quicksand(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 22,
                   ),
@@ -106,10 +108,11 @@ class _ToDoListState extends State {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    const Text(
                       "Title",
-                      style: GoogleFonts.quicksand(
-                        color: const Color.fromRGBO(0, 139, 148, 1),
+                      //style: GoogleFonts.quicksand(
+                      style: TextStyle(
+                        color: Color.fromRGBO(0, 139, 148, 1),
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
                       ),
@@ -136,10 +139,11 @@ class _ToDoListState extends State {
                     const SizedBox(
                       height: 12,
                     ),
-                    Text(
+                    const Text(
                       "Description",
-                      style: GoogleFonts.quicksand(
-                        color: const Color.fromRGBO(0, 139, 148, 1),
+                      //style: GoogleFonts.quicksand(
+                      style: TextStyle(
+                        color: Color.fromRGBO(0, 139, 148, 1),
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
                       ),
@@ -167,10 +171,11 @@ class _ToDoListState extends State {
                     const SizedBox(
                       height: 12,
                     ),
-                    Text(
+                    const Text(
                       "Date",
-                      style: GoogleFonts.quicksand(
-                        color: const Color.fromRGBO(0, 139, 148, 1),
+                      //style: GoogleFonts.quicksand(
+                      style: TextStyle(
+                        color: Color.fromRGBO(0, 139, 148, 1),
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
                       ),
@@ -236,9 +241,10 @@ class _ToDoListState extends State {
                       onSubmit(isEdit);
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "Submit",
-                    style: GoogleFonts.inter(
+                    //style: GoogleFonts.inter(
+                    style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                       fontSize: 20,
@@ -263,9 +269,10 @@ class _ToDoListState extends State {
         shadowColor: Colors.grey,
         elevation: 10,
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           "To-Do List",
-          style: GoogleFonts.quicksand(
+          //style: GoogleFonts.quicksand(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 26,
             //backgroundColor: Color.fromRGBO(2, 167, 177, 1),
@@ -335,7 +342,8 @@ class _ToDoListState extends State {
                               Text(
                                 toDoList[index].title,
                                 maxLines: 2,
-                                style: GoogleFonts.quicksand(
+                                //style: GoogleFonts.quicksand(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12,
                                   //backgroundColor: Color.fromRGBO(2, 167, 177, 1),
@@ -347,7 +355,8 @@ class _ToDoListState extends State {
                               Text(
                                 toDoList[index].content,
                                 maxLines: 3,
-                                style: GoogleFonts.quicksand(
+                                //style: GoogleFonts.quicksand(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 10,
                                   //backgroundColor: Color.fromRGBO(2, 167, 177, 1),
@@ -370,9 +379,9 @@ class _ToDoListState extends State {
                           height: 20,
                           child: Text(
                             toDoList[index].date,
-                            style: GoogleFonts.quicksand(
-                              //style: TextStyle(
-                              color: const Color.fromARGB(255, 84, 69, 69),
+                            //style: GoogleFonts.quicksand(
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 84, 69, 69),
                               fontWeight: FontWeight.w600,
                               fontSize: 10,
                             ),

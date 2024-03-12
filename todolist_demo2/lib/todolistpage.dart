@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 //import "package:flutter/widgets.dart";
 //import "package:google_fonts/google_fonts.dart";
 import 'package:intl/intl.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'main.dart';
 
 class ToDoListPage extends StatefulWidget {
@@ -13,18 +14,20 @@ class ToDoListPage extends StatefulWidget {
 }
 
 class NotesModelClass {
+  int? notesId;
   String title;
   String description;
   String date;
   bool done = false;
 
   NotesModelClass({
+    this.notesId,
     required this.title,
     required this.description,
     required this.date,
   });
 
-  Map<String,String> retMap(){
+  Map<String,dynamic> retMap(){
     return 
     {
       "title": title,
@@ -33,13 +36,37 @@ class NotesModelClass {
     };
   }
 
+  Map<String,dynamic> updateMap(){
+    return 
+    {
+      "notesId": notesId,
+      "title": title,
+      "describe": description,
+      "date": date,
+    };
+  }
+
   @override
   String toString(){
-    return "{$title $description $date}";
+    return "{$notesId $title $description $date}";
   }
 }
 
-List toDoList =  [];
+List<NotesModelClass> toDoList = [];
+
+Future<void> showData1() async{
+
+  toDoList = await showData();
+}
+
+// [
+//   NotesModelClass(
+//     notesId: 1,
+//     title: "required this.title",
+//     description: "required this.description",
+//     date: "required this.date",
+//   ),
+// ];
 class _ToDoListPageState extends State {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -47,9 +74,18 @@ class _ToDoListPageState extends State {
   TextEditingController describeController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
-  void onSubmit(bool isEdit,NotesModelClass? notes){
+  void onSubmit(bool isEdit,[NotesModelClass? notes]) async{
 
     if(isEdit){
+
+      NotesModelClass notes1 = NotesModelClass(
+        notesId: notes!.notesId,
+        title: titleController.text, 
+        description: describeController.text, 
+        date: dateController.text,
+      );
+
+      updateNotes(notes1);
 
     }else{
       insertData(
@@ -60,11 +96,33 @@ class _ToDoListPageState extends State {
         ),
       );
     }
+    titleController.clear();
+    describeController.clear();
+    dateController.clear();
+    await showData1();
+    setState(() {
+      
+    });
+  }
+
+  void deleteCurrentNotes(int i)async{
+    await deleteNotes(i);
+    await showData1();
+    setState(() {
+                                            
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    //showData1();
   }
 
   void showBottomSheetDemo(bool isEdit,[NotesModelClass? notes]){
     showModalBottomSheet(
-      //isScrollControlled: true, //need for bottom
+      isScrollControlled: true, //need for bottom
+      isDismissible: true,
       context: context, 
       builder: (context){
 
@@ -73,11 +131,11 @@ class _ToDoListPageState extends State {
             right: 15,
             left: 15,
             top: 15,
-            bottom: MediaQuery.of(context).viewInsets.bottom
+            bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: SizedBox(
             child: Column(
-              //mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
                   "Create To-Do",
@@ -89,9 +147,11 @@ class _ToDoListPageState extends State {
                 ),
                 Form(
                   key: formKey,
-                  child: Expanded(
-                    child: ListView(
-                      shrinkWrap: true,
+                  //child: Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      //shrinkWrap: true,
                       children:[
                         const SizedBox(
                           height: 10,
@@ -217,7 +277,11 @@ class _ToDoListPageState extends State {
 
                               if(isValidate){
                                 onSubmit(isEdit,notes);
+                                Navigator.of(context).pop();
                               }
+                              // else{
+                              //   onSubmit(isEdit);
+                              // }
                             },
                             child: const Text(
                               "Submit",
@@ -230,7 +294,7 @@ class _ToDoListPageState extends State {
                           ),
                         ),
                       ],
-                    ),
+                   // ),
                   ),
                 ),
               ],
@@ -267,6 +331,13 @@ class _ToDoListPageState extends State {
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
                 ),
+                // const Spacer(),
+                // IconButton(
+                //   onPressed: (){
+                //       setState(() {});
+                //   }, 
+                //   icon: Icon(Icons.refresh),
+                // ),
               ],
             ),
             const Row(
@@ -337,90 +408,165 @@ class _ToDoListPageState extends State {
                         child: ListView.builder(
                           itemCount: toDoList.length,
                           itemBuilder: (context, index) {
-                            return Container(
-                              height: 90,
-                              width: 360,
-                              margin: const EdgeInsets.only(top: 10),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 12,
-                              ),
-                              decoration: const BoxDecoration(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.08),
-                                    blurRadius: 20,
-                                    spreadRadius: 0,
-                                    offset: Offset(0, 4)
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 52,
-                                    width: 52,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 14,
-                                      vertical: 16
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(217, 217, 217, 1),
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: Image.asset(
-                                      "images/image.png",
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          toDoList[index].title,
-                                          style: const TextStyle(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.w500
+                            return Slidable(
+                           direction: Axis.horizontal,
+                           closeOnScroll: true,
+                            endActionPane: ActionPane(
+                              extentRatio: 0.2,
+                              motion: const DrawerMotion(),
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:MainAxisAlignment.spaceAround,
+                                    children: [
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          // editCard(toDoList[index]);
+                                          titleController.text = toDoList[index].title;
+                                          describeController.text = toDoList[index].description;
+                                          dateController.text = toDoList[index].date;
+
+                                          showBottomSheetDemo(true, toDoList[index]);
+                                          showData1();
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          height: 40,
+                                          width: 40,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromRGBO(89, 57, 241, 1),
+                                            borderRadius:BorderRadius.circular(20),
+                                          ),
+                                          child: const Icon(
+                                          Icons.edit_outlined,
+                                          color: Colors.white,
+                                          size: 20,
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          toDoList[index].description,
-                                          style: const TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w400
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          //deleteCard(toDoList[index]);
+
+                                          deleteCurrentNotes(toDoList[index].notesId!);
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          height: 40,
+                                          width: 40,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromRGBO(89, 57, 241, 1),
+                                            borderRadius:BorderRadius.circular(20),
+                                          ),
+                                          child: const Icon(
+                                          Icons.delete_outline,
+                                          color: Colors.white,
+                                          size: 20,
                                           ),
                                         ),
-                                        const Spacer(),
-                                        Text(
-                                          toDoList[index].date,
-                                          style: const TextStyle(
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.w400
-                                          ),
-                                        ),
-                                      ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                              child: Container(
+                                height: 90,
+                                width: double.infinity,
+                                margin: const EdgeInsets.only(top: 10),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 12,
+                                ),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.08),
+                                      blurRadius: 20,
+                                      spreadRadius: 0,
+                                      offset: Offset(0, 4)
                                     ),
-                                  ),
-                                  Checkbox(
-                                    value: toDoList[index].done,
-                                    side: const BorderSide(width: 0.5),
-                                    splashRadius: 10,
-                                    activeColor:
-                                      const Color.fromRGBO(4, 189, 0, 1),
-                                    shape: const CircleBorder(),
-                                    onChanged: (value) {
-                                      toDoList[index].done = value;
-                                      setState(() {});
-                                    }
-                                  ),
-                                ],
+                                  ],
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 52,
+                                      width: 52,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 14,
+                                        vertical: 16
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: const Color.fromRGBO(217, 217, 217, 1),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Image.asset(
+                                        "images/image.png",
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            toDoList[index].title,
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w500
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            toDoList[index].description,
+                                            maxLines: 2,
+                                            style: const TextStyle(
+                                              fontSize: 9,
+                                              fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            toDoList[index].date,
+                                            maxLines: 2,
+                                            style: const TextStyle(
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Checkbox(
+                                      value: toDoList[index].done,
+                                      side: const BorderSide(width: 0.5),
+                                      splashRadius: 10,
+                                      activeColor:
+                                        const Color.fromRGBO(4, 189, 0, 1),
+                                      shape: const CircleBorder(),
+                                      onChanged: (value) {
+                                        toDoList[index].done = value!;
+                                        setState(() {});
+                                      }
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           }
@@ -437,6 +583,9 @@ class _ToDoListPageState extends State {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showBottomSheetDemo(false);
+          setState(() {
+            
+          });
         },
         backgroundColor: const Color.fromRGBO(89, 57, 241, 1),
         shape: const CircleBorder(),

@@ -171,11 +171,11 @@ class _LogInPageState extends State{
                     child: const Text("Log In"),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have account ? "),
+                    const Text("Don't have account ? "),
                     GestureDetector(
                       onTap: () {
                         isSignUp = true;
@@ -183,7 +183,7 @@ class _LogInPageState extends State{
                           
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign Up",
                         style: TextStyle(
                           color: Colors.blue
@@ -329,11 +329,11 @@ class _LogInPageState extends State{
                     child: const Text("Log In"),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already have account ? "),
+                    const Text("Already have account ? "),
                     GestureDetector(
                       onTap: () {
                         isSignUp = false;
@@ -341,7 +341,7 @@ class _LogInPageState extends State{
                           
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign In",
                         style: TextStyle(
                           color: Colors.blue

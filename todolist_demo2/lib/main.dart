@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'todolistpage.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart'as p;
 
 dynamic database;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MainApp());
-
+  //runApp(const MainApp());
   database= await openDatabase(
-    join(await getDatabasesPath(),"todo.db"),
+    p.join(await getDatabasesPath(),"todo7.db"),
     version: 1,
     onCreate: (db, version) {
       db.execute(
-        '''CREATE TABLE todolist(title TEXT,describe TEXT,date TEXT)'''
+        '''CREATE TABLE todolist(
+          notesId INTEGER PRIMARY KEY AUTOINCRIMENT,
+          title TEXT,
+          describe TEXT,
+          date TEXT
+        )'''
       );
     },
   );
+  await showData1();
+  runApp(const MainApp());
 }
 
+//Insert Function
 void insertData(NotesModelClass notes) async{
   
   Database db= await database;
@@ -29,10 +36,12 @@ void insertData(NotesModelClass notes) async{
     notes.retMap(),
   );
 
-  print(await showData());
+  //print(await showData());
 
 }
- Future<List<NotesModelClass>>showData() async{
+
+//View Data function
+Future<List<NotesModelClass>>showData() async{
   
   Database db= await database;
   List lst= await db.query("todolist");
@@ -41,6 +50,7 @@ void insertData(NotesModelClass notes) async{
     lst.length, 
     (i) {
       return NotesModelClass(
+        notesId: lst[i]["notesId"],
         title: lst[i]["title"],
         description: lst[i]["describe"],
         date: lst[i]["date"]
@@ -48,6 +58,32 @@ void insertData(NotesModelClass notes) async{
     }
   );
   return lst1;
+}
+
+//Delete Function
+Future<void> deleteNotes(int id)async{
+
+  Database db = await database;
+
+  db.delete(
+    "todolist",
+    where: "notesId= ?",
+    whereArgs: [id],
+  );
+  //print(await showData());
+}
+
+//Update Function
+Future<void> updateNotes(NotesModelClass notes)async{
+
+  Database db = await database;
+  db.update(
+    "todolist",
+    notes.retMap(),
+    where: "notesId= ?",
+    whereArgs: [notes.notesId],
+  );
+  //print(await showData());
 }
 
 
