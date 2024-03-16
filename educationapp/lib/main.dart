@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:educationapp/classacadamy.dart';
+//import 'package:educationapp/classacadamy.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'login.dart';
 
 dynamic db;
 
@@ -9,23 +10,22 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   db = openDatabase(
-    join(await getDatabasesPath(),"ac.db"),
+    join(await getDatabasesPath(),"accc.db"),
     version: 1,
-    onCreate: (db, version) {
-      db.execute(
+    onCreate: (db, version) async{
+      await db.execute(
         '''
           CREATE TABLE userInfo(
             userName TEXT PRIMARY KEY,
             password TEXT,
             name TEXT,
-            emailId TEXT,
-            mobileNo REAL,
+            emailId TEXT
           )
         '''
       );
     },
   );
-
+  getUserData();
   runApp(const MainApp());
 }
 
@@ -37,6 +37,7 @@ Future insertData(String tableName,dynamic obj)async{
     obj.retMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
+  print(obj);
 }
 
 Future deleteData(String tableName,String where,List whereargs,dynamic obj)async{
@@ -64,6 +65,8 @@ Future<List<Map<String,dynamic>>> getData(String tableName)async{
   Database localdb = await db;
 
   List<Map<String,dynamic>> lst = await localdb.query(tableName);
+
+  print("getData");
   
   return lst;
 }
@@ -74,7 +77,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: ClassAcadamy(),
+      home: LogInPage(),
       debugShowCheckedModeBanner: false,
     );
   }

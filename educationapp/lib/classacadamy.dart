@@ -1,5 +1,7 @@
 
+import 'package:educationapp/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ClassAcadamy extends StatefulWidget{
 
@@ -81,7 +83,7 @@ Widget getPages(int navBarCount){
         //   icon: const Icon(Icons.arrow_back),
         //   alignment: Alignment.centerLeft,
         // ),
-        title: const Column(
+        title: Column(
           mainAxisSize: MainAxisSize.min,
           children:[
             // Row(
@@ -105,23 +107,23 @@ Widget getPages(int navBarCount){
             //   ],
             // ),
             //Spacer(),
-            SizedBox(height: 50,),
-            CircleAvatar(radius:50,backgroundImage: AssetImage("assets/images/profile.jpeg")),
-            SizedBox(height: 20,),
+            const SizedBox(height: 50,),
+            const CircleAvatar(radius:50,backgroundImage: AssetImage("assets/images/profile.jpeg")),
+            const SizedBox(height: 20,),
             Text(
-              "Aditya Khetre",
-              style: TextStyle(
+              currentUser!.name,
+              style: const TextStyle(
                 fontSize: 20
               ),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text(
-              "adityakhetre@gmail.com",
-              style: TextStyle(
+              currentUser!.email,
+              style: const TextStyle(
                 fontSize: 10,
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
           ],
         ),
             centerTitle: true,
@@ -336,9 +338,9 @@ Widget getPages(int navBarCount){
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   alignment: Alignment.centerLeft,
-                  child: const Text(
-                    "Hi, Programmer ",
-                    style: TextStyle(
+                  child: Text(
+                    "Hi, ${currentUser!.name} ",
+                    style: const TextStyle(
                       fontSize: 30
                     ),
                   ),
@@ -377,10 +379,12 @@ Widget getPages(int navBarCount){
                         Container(
                           height: 50,
                           width: 50,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.yellow,
                             borderRadius: BorderRadius.circular(50),
                           ),
+                          child: SvgPicture.asset("assets/svg/category.svg"),
                         ),
                         const SizedBox(height: 5,),
                         const Text("Category"),
@@ -391,10 +395,13 @@ Widget getPages(int navBarCount){
                         Container(
                           height: 50,
                           width: 50,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.lightGreen,
                             borderRadius: BorderRadius.circular(50),
                           ),
+                          child: const Icon(Icons.playlist_play,color: Colors.white,),
                         ),
                         const SizedBox(height: 5,),
                         const Text("Classes"),
@@ -405,10 +412,12 @@ Widget getPages(int navBarCount){
                         Container(
                           height: 50,
                           width: 50,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.lightBlue,
                             borderRadius: BorderRadius.circular(50),
                           ),
+                          child: Icon(Icons.note,color: Colors.white,),
                         ),
                         const SizedBox(height: 5,),
                         const Text("Free Course"),
@@ -425,10 +434,12 @@ Widget getPages(int navBarCount){
                         Container(
                           height: 50,
                           width: 50,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.redAccent,
                             borderRadius: BorderRadius.circular(50),
                           ),
+                          child: Icon(Icons.shop,color: Colors.white,),
                         ),
                         const SizedBox(height: 5,),
                         const Text("BookStore"),
@@ -439,10 +450,12 @@ Widget getPages(int navBarCount){
                         Container(
                           height: 50,
                           width: 50,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.purple,
                             borderRadius: BorderRadius.circular(50),
                           ),
+                          child: Icon(Icons.play_arrow,color: Colors.white,),
                         ),
                         const SizedBox(height: 5,),
                         const Text("Live Course"),
@@ -453,11 +466,12 @@ Widget getPages(int navBarCount){
                         Container(
                           height: 50,
                           width: 50,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          //child: ,
+                          child:Icon(Icons.batch_prediction)
                         ),
                         const SizedBox(height: 5,),
                         const Text("LeaderBoard"),
@@ -469,10 +483,12 @@ Widget getPages(int navBarCount){
                 const Row(
                   children: [
                     //SizedBox(width: 5,),
-                    Text(
-                      "Courses",
+                     Text(
+                      "Course For You",
                       style: TextStyle(
-                        fontSize: 20
+                        color: Color.fromRGBO(0, 0, 0, 1),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
                       ),
                     ),
                     Spacer(),
@@ -480,6 +496,153 @@ Widget getPages(int navBarCount){
                     //SizedBox(width: 5,),
                   ],
                 ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context)=> const Course(),
+                              //   ),
+                              // );
+                            },
+                            child: Container(
+                              height: 242,
+                              width: 190,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 22,
+                                vertical: 20,
+                              ),
+                              margin: const EdgeInsets.only(
+                                right: 20,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color.fromRGBO(197, 4, 98, 1),
+                                    Color.fromRGBO(80, 3, 112, 1),
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    child: Text(
+                                      "JEE Batch 2024",
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 3,),
+                                  SizedBox(
+                                    height: 154,
+                                    width: 154,
+                                    child: Image.asset("assets/images/jee.png"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      
+                          Container(
+                            height: 242,
+                            width: 190,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 22,
+                              vertical: 20,
+                            ),
+                            margin: const EdgeInsets.only(
+                              right: 20,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Color.fromRGBO(0, 77, 228, 1),
+                                  Color.fromRGBO(1, 47, 135, 1),
+                                ],
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  child: Text(
+                                    "NEET Batch 2024",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 3,),
+                                SizedBox(
+                                  height: 154,
+                                  width: 154,
+                                  child: Image.asset("assets/images/neet.jpeg"),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 242,
+                            width: 190,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 22,
+                              vertical: 20,
+                            ),
+                            margin: const EdgeInsets.only(
+                              right: 20,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Color.fromRGBO(150, 225, 242, 1),
+                                  Color.fromRGBO(11, 137, 196, 1),
+                                ],
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  child: Text(
+                                    "CET Batch 2024",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 3,),
+                                SizedBox(
+                                  height: 154,
+                                  width: 154,
+                                  child: Image.asset("assets/images/neet.jpeg"),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
               ],
             ),
           ),
