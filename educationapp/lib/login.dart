@@ -40,20 +40,20 @@ List validUsers = [
 ];
 Users? currentUser;
 
-  Future<void> getUserData()async{
-    List data =  await getData("userInfo");
-    validUsers = List.generate(
-      data.length, 
-      (i){
-        return Users(
-          data[i]["userName"],
-          data[i]["password"],
-          data[i]["name"],
-          data[i]["emailId"],
-        );
-      }
-    );
-  }
+Future<void> getUserData()async{
+  List data =  await getData("userInfo");
+  validUsers = List.generate(
+    data.length, 
+    (i){
+      return Users(
+        data[i]["userName"],
+        data[i]["password"],
+        data[i]["name"],
+        data[i]["emailId"],
+      );
+    }
+  );
+}
 
 class _LogInPageState extends State{
 
@@ -535,10 +535,10 @@ class _LogInPageState extends State{
                                   content:Text("username isn't awailable"),
                                 )
                               );
-                              if(confirmPasswordController==passwordController.text){
-                                //isConfirmPassword=false;
-                                signUpFormKey.currentState!.validate();
-                              }
+                              // if(confirmPasswordController==passwordController.text){
+                              //   //isConfirmPassword=false;
+                              //   signUpFormKey.currentState!.validate();
+                              // }
                               //signUpFormKey.currentState!.validate();
                               }
                               ScaffoldMessenger.of(context).showSnackBar(
