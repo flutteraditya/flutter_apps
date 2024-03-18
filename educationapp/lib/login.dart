@@ -289,14 +289,15 @@ class _LogInPageState extends State{
       ),
     ) : 
     Scaffold(
-        body: Container(
-          color: const Color.fromRGBO(232, 237, 250, 1),
-          child: Padding(
-            padding: const EdgeInsets.only(
+        body: //Container(
+          //color: const Color.fromRGBO(232, 237, 250, 1),
+          //child: 
+          Padding(
+            padding: EdgeInsets.only(
               top: 50,
               left: 50,
               right: 50,
-              bottom: 0,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             child: Form(
               key: signUpFormKey,
@@ -402,9 +403,9 @@ class _LogInPageState extends State{
                           height: 2,
                           width: 2,
                           child: const Text(
-                            "@",
+                            " @",
                             style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold
                             ),
                           ),
@@ -615,7 +616,7 @@ class _LogInPageState extends State{
               ),
             ),
           ),
-        )
+      //  )
       );
   }
 }

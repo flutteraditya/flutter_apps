@@ -3,6 +3,7 @@ import 'package:educationapp/bookstore.dart';
 import 'package:educationapp/leaderBoard.dart';
 import 'package:educationapp/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -453,6 +454,9 @@ Widget getPages(int navBarCount){
                   GestureDetector(
                     onTap: () {
                       navBarCount = 0;
+                      setState(() {
+                        
+                      });
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -639,21 +643,29 @@ Widget getPages(int navBarCount){
                             const Text("BookStore"),
                           ],
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.purple,
-                                borderRadius: BorderRadius.circular(50),
+                        GestureDetector(
+                          onTap: (){
+                            navBarCount = 2;
+                            setState(() {
+                              
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.purple,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: const Icon(Icons.play_arrow_outlined,color: Colors.white,),
                               ),
-                              child: const Icon(Icons.play_arrow_outlined,color: Colors.white,),
-                            ),
-                            const SizedBox(height: 5,),
-                            const Text("Live Course"),
-                          ],
+                              const SizedBox(height: 5,),
+                              const Text("Live Course"),
+                            ],
+                          ),
                         ),
                         GestureDetector(
                           onTap: () {

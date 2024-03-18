@@ -37,7 +37,7 @@ Future insertData(String tableName,dynamic obj)async{
     obj.retMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
-  print(obj);
+  //print(obj);
 }
 
 Future deleteData(String tableName,String where,List whereargs,dynamic obj)async{
@@ -66,7 +66,7 @@ Future<List<Map<String,dynamic>>> getData(String tableName)async{
 
   List<Map<String,dynamic>> lst = await localdb.query(tableName);
 
-  print("getData");
+  //[print("getData");
   
   return lst;
 }

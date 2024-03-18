@@ -83,7 +83,7 @@ class _LeaderBoardState extends State{
                                 bottom: 20
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.amber,
+                                color: Color.fromARGB(255, 227, 157, 243),
                                 borderRadius: BorderRadius.circular(14),
                                 // gradient: const LinearGradient(
                                 //   begin: Alignment.topCenter,
@@ -96,7 +96,7 @@ class _LeaderBoardState extends State{
                               child: Row(
                                 children: [
                                   Text("${index+1}."),
-                                  SizedBox(width: 5,),
+                                  const SizedBox(width: 5,),
                                   Text("${validUsers[index].name}")
                                 ],
                               ),
