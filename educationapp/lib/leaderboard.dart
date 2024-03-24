@@ -1,5 +1,6 @@
+import 'package:educationapp/login.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
+
 
 class LeaderBoard extends StatefulWidget{
 
@@ -83,7 +84,7 @@ class _LeaderBoardState extends State{
                                 bottom: 20
                               ),
                               decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 227, 157, 243),
+                                color: const Color.fromARGB(255, 227, 157, 243),
                                 borderRadius: BorderRadius.circular(14),
                                 // gradient: const LinearGradient(
                                 //   begin: Alignment.topCenter,
