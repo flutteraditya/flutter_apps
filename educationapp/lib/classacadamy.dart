@@ -1,4 +1,5 @@
 
+import 'package:educationapp/batches.dart';
 import 'package:educationapp/home.dart';
 import 'package:educationapp/mycourses.dart';
 import 'package:educationapp/profile.dart';
@@ -112,7 +113,9 @@ class _ClassAcadamyState extends State{
   }
 
   Widget getPages(int navBarCount){
-
+    if(navBarCount== 1){
+      return const BachesPage();
+    }
     if(navBarCount== 2){
       return const MyCoursesPage();
     }
