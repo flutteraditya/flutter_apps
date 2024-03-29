@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class Courses{
 
-  String name;
+  String courseName;
   String batch1;
   String batch2;
   String batch3;
@@ -18,7 +18,7 @@ class Courses{
 
   Courses(
     {
-      required this.name,
+      required this.courseName,
       required this.batch1,
       required this.batch2,
       required this.batch3,
@@ -30,9 +30,9 @@ class Courses{
 }
 
 List courses = [
-  Courses(name: "JEE", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",img:"jee.png", amount: 25000),
-  Courses(name: "NEET", batch1: "Physics", batch2: "Chemistry", batch3: "Biology",img: "neet.jpeg", amount: 20000),
-  Courses(name: "MHTCET", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",batch4: "Biology",img: "cet.jpg", amount: 15000),
+  Courses(courseName: "JEE", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",img:"jee.png", amount: 25000),
+  Courses(courseName: "NEET", batch1: "Physics", batch2: "Chemistry", batch3: "Biology",img: "neet.jpeg", amount: 20000),
+  Courses(courseName: "MHTCET", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",batch4: "Biology",img: "cet.jpg", amount: 15000),
 ];
 
 List getColor1 = [

@@ -37,6 +37,9 @@ Future insertData(String tableName,dynamic obj)async{
     obj.retMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
+  if(tableName == "userInfo"){
+    await crCourseTb(obj.userName);
+  }
   //print(obj);
 }
 
@@ -66,9 +69,21 @@ Future<List<Map<String,dynamic>>> getData(String tableName)async{
 
   List<Map<String,dynamic>> lst = await localdb.query(tableName);
 
-  //[print("getData");
+  //print("getData");
   
   return lst;
+}
+
+Future<void> crCourseTb(String tableName)async{
+  Database localdb = await db;
+  await localdb.execute(
+    '''
+      CREATE TABLE $tableName(
+        courseId INTEGER PRIMARY KEY,
+        courseName TEXT,
+      )
+    '''
+  );
 }
 
 class MainApp extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:educationapp/classacadamy.dart';
 import 'package:educationapp/leaderboard.dart';
 import 'package:educationapp/login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+//import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -88,7 +88,10 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.yellow,
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: SvgPicture.asset("assets/svg/category.svg"),
+                            child: const Icon(
+                              Icons.category_outlined,//play_arrow_outlined,
+                              color: Colors.white,
+                            ),
                           ),
                           const SizedBox(
                             height: 5,
@@ -108,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: const Icon(
-                              Icons.playlist_play,
+                              Icons.featured_play_list_outlined,
                               color: Colors.white,
                             ),
                           ),
@@ -129,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: const Icon(
-                              Icons.note_outlined,
+                              Icons.menu_book_outlined,
                               color: Colors.white,
                             ),
                           ),
@@ -231,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
-                                  Icons.bookmark_add,
+                                  Icons.leaderboard_outlined,
                                   color: Colors.white,
                                 )),
                             const SizedBox(
