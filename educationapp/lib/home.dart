@@ -266,7 +266,13 @@ class _HomePageState extends State<HomePage> {
                             seeAll = !seeAll;
                             setState(() {});
                           },
-                          child: const Text("See All")),
+                          child: const Text(
+                            "See All",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 2, 15, 166)
+                            ),
+                          ),
+                      ),
                       //SizedBox(width: 5,),
                     ],
                   ),
@@ -275,6 +281,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   (seeAll)
                       ? ListView.builder(
+                          controller: ScrollController(
+                            keepScrollOffset: false
+                          ),
                           itemCount: courses.length,
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -303,19 +312,45 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   SizedBox(
-                                    child: Text(
-                                      "${courses[index].name} Batch 2024",
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color.fromRGBO(255, 255, 255, 1),
-                                      ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${courses[index].courseName} Batch 2024",
+                                          style: const TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromRGBO(255, 255, 255, 1),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5,),
+                                        Text(
+                                          "Fees: ${courses[index].amount}",
+                                          style: const TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromRGBO(255, 255, 255, 1),
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        ElevatedButton(
+                                          onPressed: (){}, 
+                                          child: const Text(
+                                            "Add Course",
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   const Spacer(),
                                   SizedBox(
                                     height: 150,
-                                    width: 150,
+                                    width: 100,
                                     child:
                                         Image.asset("assets/images/${courses[index].img}"),
                                   ),
@@ -366,7 +401,7 @@ class _HomePageState extends State<HomePage> {
                                     children: [
                                       SizedBox(
                                         child: Text(
-                                          "${courses[index].name} Batch 2024",
+                                          "${courses[index].courseName} Batch 2024",
                                           maxLines: 1,
                                           style: const TextStyle(
                                             fontSize: 15,

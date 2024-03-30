@@ -73,6 +73,7 @@ class _LogInPageState extends State{
     userNameController.clear();
     passwordController.clear();
     fullNameController.clear();
+    emailController.clear();
     confirmPasswordController.clear();
   }
 

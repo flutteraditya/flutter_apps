@@ -265,7 +265,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       child: const Row(
                         children: [
-                          Icon(Icons.person_2_outlined),
+                          Icon(Icons.person_outlined),
                           SizedBox(width: 10,),
                           Text("Profile"),
                         ],
