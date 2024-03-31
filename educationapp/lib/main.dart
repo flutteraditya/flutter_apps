@@ -1,3 +1,4 @@
+import 'package:educationapp/reviews.dart';
 import 'package:flutter/material.dart';
 //import 'package:educationapp/classacadamy.dart';
 import 'package:sqflite/sqflite.dart';
@@ -10,7 +11,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   db = openDatabase(
-    join(await getDatabasesPath(),"accc.db"),
+    join(await getDatabasesPath(),"acco.db"),
     version: 1,
     onCreate: (db, version) async{
       await db.execute(
@@ -23,8 +24,18 @@ void main() async{
           )
         '''
       );
+      await db.execute(
+        '''
+          CREATE TABLE userReviews(
+            userName TEXT PRIMARY KEY,
+            reviews TEXT,
+            starCount INTEGER
+          )
+        '''
+      );
     },
   );
+  getReviewData();
   getUserData();
   runApp(const MainApp());
 }
@@ -37,10 +48,10 @@ Future insertData(String tableName,dynamic obj)async{
     obj.retMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
-  if(tableName == "userInfo"){
-    await crCourseTb(obj.userName);
-  }
-  //print(obj);
+  // if(tableName == "userInfo"){
+  //   await crCourseTb(obj.userName);
+  // }
+  print(obj);
 }
 
 Future deleteData(String tableName,String where,List whereargs,dynamic obj)async{
@@ -62,6 +73,7 @@ Future updateData(String tableName,String where,List whereargs,dynamic obj)async
     where: where,
     whereArgs: whereargs
   );
+  print(obj);
 }
 
 Future<List<Map<String,dynamic>>> getData(String tableName)async{

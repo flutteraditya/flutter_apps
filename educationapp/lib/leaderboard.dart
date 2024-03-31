@@ -35,6 +35,7 @@ class _LeaderBoardState extends State{
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
+                    const SizedBox(height: 20,),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
                       alignment: Alignment.centerLeft,

@@ -21,7 +21,7 @@ class _SearchState extends State<Search>{
           height: 30,
           width: 360,
           decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20),),
+            borderRadius: BorderRadius.all(Radius.circular(10),),
             color: Colors.grey,
           ),
            child: //const Row(
@@ -31,15 +31,15 @@ class _SearchState extends State<Search>{
           //     SizedBox(width: 10,),
               //Text("Search",style: TextStyle(fontSize: 10),)
               TextField(
-                strutStyle: StrutStyle(
-                  leading: 0,
-                ),
-                cursorHeight: 20,
+                //cursorHeight: 20,
+                textAlign: TextAlign.start,
+                
                 decoration: InputDecoration(
                   hintText: "search",
-                  icon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(20) 
+                    borderRadius:BorderRadius.circular(10) ,
+                    borderSide: BorderSide.none
                   ),
                 ),
               ),

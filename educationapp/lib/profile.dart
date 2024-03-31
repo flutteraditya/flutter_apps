@@ -1,6 +1,7 @@
 import 'package:educationapp/classacadamy.dart';
 import 'package:educationapp/login.dart';
 import 'package:educationapp/main.dart';
+import 'package:educationapp/reviews.dart';
 import 'package:flutter/material.dart';
 
 
@@ -229,7 +230,10 @@ class _ProfilePageState extends State<ProfilePage> {
             // ],
         ),
           body:  Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 10,
+            ),
             child: Center(
               child: ListView(
                 children: [
@@ -305,6 +309,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context)=> const Reviews(),
+                        ),
+                      );
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,

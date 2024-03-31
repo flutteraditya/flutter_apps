@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             // height: 200,
-            margin: const EdgeInsets.only(bottom: 20),
+            //margin: const EdgeInsets.only(bottom: 20),
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 124, 1, 246),
               borderRadius: BorderRadius.only(
@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
+                  const SizedBox(height: 20,),
                   const Row(
                     children: [
                       Icon(Icons.menu),

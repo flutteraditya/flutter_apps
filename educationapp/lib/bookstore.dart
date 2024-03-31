@@ -56,13 +56,7 @@ class _BookStoreState extends State<BookStore>{
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    const Row(
-                      children: [
-                        Icon(Icons.menu),
-                        Spacer(),
-                        Icon(Icons.notifications_outlined),
-                      ],
-                    ),
+                    const SizedBox(height: 20,),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
                       alignment: Alignment.centerLeft,

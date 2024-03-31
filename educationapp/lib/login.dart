@@ -1,6 +1,8 @@
 
+import 'package:educationapp/admin/admin.dart';
 import 'package:educationapp/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'classacadamy.dart';
 
 class LogInPage extends StatefulWidget{
@@ -66,6 +68,7 @@ class _LogInPageState extends State{
   TextEditingController confirmPasswordController = TextEditingController();
 
   bool isSignUp = false;
+  bool isAdmin = false;
   bool showPassword = false;
   bool isConfirmPassword = false;
 
@@ -112,6 +115,49 @@ class _LogInPageState extends State{
 
     return !isSignUp ? 
     Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    isAdmin = false;
+                    setState(() {
+                      
+                    });
+                  },
+                  child: Text("User")
+                ),
+                Container(
+                  color: !isAdmin ? Colors.black: Colors.white,
+                  height: 5,
+                  width: 100,
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    isAdmin = true;
+                    setState(() {
+                      
+                    });
+                  },
+                  child: Text("Admin")
+                ),
+                Container(
+                  color: isAdmin ? Colors.black: Colors.white,
+                  height: 5,
+                  width: 100,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
       body: Container(
         color: const Color.fromRGBO(232, 237, 250, 1),
         child: Form(
@@ -218,28 +264,54 @@ class _LogInPageState extends State{
                       bool isVal = globalKey.currentState!.validate();
 
                       if(isVal){
-                        Users? isValidate = isValidateUser(userNameController,passwordController);
 
-                        if(isValidate!= null){
-                          currentUser = isValidate;
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ClassAcadamy(),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Log In Successful!"),
-                            ),
-                          );
-                          clearController();
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Invalid Username or Password")
-                            ),
-                          );
+                        if (!isAdmin) {
+                          Users? isValidate = isValidateUser(userNameController,passwordController);
+                          if(isValidate!= null){
+                            currentUser = isValidate;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ClassAcadamy(),
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Log In Successful!"),
+                              ),
+                            );
+                            clearController();
+                          }else{
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Invalid Username or Password")
+                              ),
+                            );
+                          }
+                        }
+                        else{
+
+                          if(userNameController.text == "aditya" && passwordController.text == "1107"){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AdminPage(),
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Log In Successful!"),
+                              ),
+                            );
+                            clearController();
+                          }
+                          else{
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Invalid Username or Password")
+                              ),
+                            );
+                          }
                         }
                       }
                       else{

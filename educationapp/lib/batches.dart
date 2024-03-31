@@ -30,6 +30,7 @@ class _BachesPageState extends State<BachesPage> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
+                  const SizedBox(height: 20,),
                   const Row(
                     children: [
                       Icon(Icons.menu),
@@ -41,7 +42,7 @@ class _BachesPageState extends State<BachesPage> {
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     alignment: Alignment.centerLeft,
                     child: const Text(
-                      "Courses",
+                      "Batches",
                       style: TextStyle(
                         fontSize: 30
                       ),

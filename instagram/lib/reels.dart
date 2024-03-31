@@ -36,7 +36,11 @@ class _ReelsState extends State<Reels>{
           ),
         ),*/
         body: Container(
-          color: Colors.grey,
+          // color: Colors.grey,
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+            image: DecorationImage(image: AssetImage("images/reelimg.jpg"))
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -63,9 +67,9 @@ class _ReelsState extends State<Reels>{
                           
                         ),
                         alignment: Alignment.center,
-                        child: ElevatedButton(
-                          style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.grey)),
-                          onPressed: (){setState(() {reel1[1]= !reel1[1];});},
+                        child: GestureDetector(
+                          //style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.grey)),
+                          onTap: (){setState(() {reel1[1]= !reel1[1];});},
                           child: Container(
                             color: Colors.transparent,
                             child: (reel1[1]) ?  
@@ -130,7 +134,8 @@ class _ReelsState extends State<Reels>{
                       width: 25,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: Colors.blueGrey
+                        color: Colors.blueGrey,
+                        image: DecorationImage(image: NetworkImage("https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600"))
                       ),
                     ),
                     const SizedBox(height: 10,),

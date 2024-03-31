@@ -30,6 +30,7 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
+                  const SizedBox(height: 20,),
                   const Row(
                     children: [
                       Icon(Icons.menu),
