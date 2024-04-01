@@ -1,3 +1,4 @@
+import 'package:educationapp/admin/courses.dart';
 import 'package:educationapp/admin/users.dart';
 import 'package:flutter/material.dart';
 
@@ -45,6 +46,29 @@ class _AdminPageState extends State<AdminPage> {
                   color: Colors.grey[300],
                 ),
                 child: const Text("User List"),
+              ),
+            ),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context)=> const CoursesList(),
+                  ),
+                );
+              },
+              child: Container(
+                height: 50,
+                width: double.infinity,
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(
+                  top: 10,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.grey[300],
+                ),
+                child: const Text("Courses List"),
               ),
             ),
           ],

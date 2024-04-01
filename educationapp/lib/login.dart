@@ -2,7 +2,6 @@
 import 'package:educationapp/admin/admin.dart';
 import 'package:educationapp/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'classacadamy.dart';
 
 class LogInPage extends StatefulWidget{
@@ -116,6 +115,7 @@ class _LogInPageState extends State{
     return !isSignUp ? 
     Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(232, 237, 250, 1),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -128,11 +128,11 @@ class _LogInPageState extends State{
                       
                     });
                   },
-                  child: Text("User")
+                  child: const Text("User")
                 ),
                 Container(
-                  color: !isAdmin ? Colors.black: Colors.white,
-                  height: 5,
+                  color: !isAdmin ? Colors.black: const Color.fromRGBO(232, 237, 250, 1),
+                  height: 2,
                   width: 100,
                 ),
               ],
@@ -146,11 +146,11 @@ class _LogInPageState extends State{
                       
                     });
                   },
-                  child: Text("Admin")
+                  child: const Text("Admin")
                 ),
                 Container(
-                  color: isAdmin ? Colors.black: Colors.white,
-                  height: 5,
+                  color: isAdmin ? Colors.black: const Color.fromRGBO(232, 237, 250, 1),
+                  height: 2,
                   width: 100,
                 ),
               ],
@@ -334,6 +334,8 @@ class _LogInPageState extends State{
                   ),
                 ),
                 const SizedBox(height: 10,),
+                (isAdmin) ?
+                const SizedBox():
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -365,327 +367,330 @@ class _LogInPageState extends State{
         body: //Container(
           //color: const Color.fromRGBO(232, 237, 250, 1),
           //child: 
-          Padding(
-            padding: EdgeInsets.only(
-              top: 50,
-              left: 50,
-              right: 50,
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Form(
-              key: signUpFormKey,
-              child: ListView(
-                 //crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      width: double.infinity,
-                      height: 20,
-                    ),
-                    Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        //color: Colors.black,
-                        borderRadius: BorderRadius.circular(100),
-                        image: const DecorationImage(
-                          image: AssetImage(
-                            "assets/images/image.png",
-                          ),
-                        ),
+          Container(
+            color: const Color.fromRGBO(232, 237, 250, 1),
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 50,
+                left: 50,
+                right: 50,
+                //bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Form(
+                key: signUpFormKey,
+                child: ListView(
+                   //crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        width: double.infinity,
+                        height: 20,
                       ),
-                      // child: Image.asset(
-                      //   "assets/images/profile.jpeg",
-                      //   height: 100,
-                      // ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: const Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: fullNameController,
-                      decoration: InputDecoration(
-                        hintText: "name surname",
-                        label: const Text("Enter Your Full Name"),
-                        border: OutlineInputBorder(
-                          borderRadius:BorderRadius.circular(30),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.person_outline,
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if(value==null||value.isEmpty){
-                          return "Please enter fullname";
-                        }else{
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: "abc@gmail.com",
-                        label: const Text("Enter Your Email"),
-                        border: OutlineInputBorder(
-                          borderRadius:BorderRadius.circular(30),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.email_outlined
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if(value==null||value.isEmpty){
-                          return "Please enter email";
-                        }else{
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: userNameController,
-                      decoration: InputDecoration(
-                        hintText: "username",
-                        label: const Text("Enter User Name"),
-                        border: OutlineInputBorder(
-                          borderRadius:BorderRadius.circular(30),
-                        ),
-                        prefixIcon:  Container(
-                          margin:const EdgeInsets.all(8),
-                          height: 2,
-                          width: 2,
-                          child: const Text(
-                            " @",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
+                      Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          //color: Colors.black,
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                            image: AssetImage(
+                              "assets/images/image.png",
                             ),
                           ),
                         ),
+                        // child: Image.asset(
+                        //   "assets/images/profile.jpeg",
+                        //   height: 100,
+                        // ),
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if(value==null||value.isEmpty){
-                          return "Please enter username";
-                        }else if(isSameUserName(value)){
-                          return "username already taken";
-                        }
-                        else{
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                    obscureText:true,
-                    obscuringCharacter: "*",
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        hintText: "password",
-                        label: const Text("Enter Password"),
-                        border: OutlineInputBorder(
-                          borderRadius:BorderRadius.circular(30),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock_outline
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if(value==null||value.isEmpty){
-                          return "Please enter password";
-                        }else{
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                    obscureText:!showPassword,
-                    obscuringCharacter: "*",
-                      controller: confirmPasswordController,
-                      decoration: InputDecoration(
-                        hintText: "confirm password",
-                        label: const Text("Confirm Password"),
-                        border: OutlineInputBorder(
-                          borderRadius:BorderRadius.circular(30),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock_outline
-                        ),
-                        suffixIcon: 
-                      GestureDetector(
-                        onTap: () {
-                          showPassword=!showPassword;
-                          setState(() {
-                            
-                          });
-                        },
-                        
-                        child:showPassword?
-                          const Icon(Icons.visibility_off_outlined,):
-                          const Icon(Icons.visibility_outlined)
-                      )
+                      const SizedBox(
+                        height: 20,
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if(value==null||value.isEmpty){
-                          return "Please Confirm Password";
-                        }else if(passwordController.text != value){
-                          isConfirmPassword=true;
-                          return "Please Enter Same Password";
-                        }else{
-                          return null;
-                        }
-                      },
-                      // onFieldSubmitted: (value) {
-                      //   if(confirmPasswordController!=passwordController.text){
-                      //     isConfirmPassword=false;
-                      //   }
-                      //   signUpFormKey.currentState!.validate();
-                      // }
-          
-                      // onFieldSubmitted: (value) {
-                      //   if(value==passwordController.text){
-                      //     return null;
-                      //   }else{
-                      //     return "Please re-enter correct password"
-                      //   }
-                      // },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 50,
-                      //color: const Color.fromRGBO(2, 167, 177, 1),
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(2, 167, 177, 1),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child:ElevatedButton(
-                        onPressed: (){
-                          setState(() {
-                            bool signUpValidation=signUpFormKey.currentState!.validate();
-          
-                            if(signUpValidation){
-                              // userInfoList.add(
-                              //   UserInfo(
-                              //   fullNameController.text,
-                              //   userNameController.text, 
-                              //   passwordController.text,
-                              //   )
-                              // );
-                              if(isSameUserName(userNameController.text)){
-                                signUpFormKey.currentState!.validate();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content:Text("username isn't awailable"),
-                                )
-                              );
-                              // if(confirmPasswordController==passwordController.text){
-                              //   //isConfirmPassword=false;
-                              //   signUpFormKey.currentState!.validate();
-                              // }
-                              //signUpFormKey.currentState!.validate();
-                              }
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content:Text("SignUp Successful"),
-                                )
-                              );
-                              addUser(
-                                Users(
-                                  userNameController.text,
-                                  passwordController.text,
-                                  fullNameController.text,
-                                  emailController.text
-                                )
-                              );
-                              isSignUp=false;
-                              showPassword = false;
-                              clearController();
-                            }
-                            else{
-                              ScaffoldMessenger.of(context).showSnackBar(  
-                              const SnackBar(
-                                  content:Text("Please Enter Data") 
-                                ),
-                              );
-                            }
+                      TextFormField(
+                        controller: fullNameController,
+                        decoration: InputDecoration(
+                          hintText: "name surname",
+                          label: const Text("Enter Your Full Name"),
+                          border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(30),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.person_outline,
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value==null||value.isEmpty){
+                            return "Please enter fullname";
+                          }else{
+                            return null;
                           }
-                        );  
-                      }, 
-                      style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(
-                           Color.fromARGB(255, 124, 1, 246),
-                        ),
-                        foregroundColor: MaterialStatePropertyAll(
-                          Color.fromRGBO(232, 237, 250, 1),
-                        ),
-                      ),
-                      child:const Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Already have an account ? "
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          clearController();
-                          setState(() {
-                            isSignUp=false;
-                          });
                         },
-                        child:const Text("Login ",
-                        style: TextStyle(
-                          color: Colors.blue
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          hintText: "abc@gmail.com",
+                          label: const Text("Enter Your Email"),
+                          border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(30),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.email_outlined
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value==null||value.isEmpty){
+                            return "Please enter email";
+                          }else{
+                            return null;
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: userNameController,
+                        decoration: InputDecoration(
+                          hintText: "username",
+                          label: const Text("Enter User Name"),
+                          border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(30),
+                          ),
+                          prefixIcon:  Container(
+                            margin:const EdgeInsets.all(8),
+                            height: 2,
+                            width: 2,
+                            child: const Text(
+                              " @",
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value==null||value.isEmpty){
+                            return "Please enter username";
+                          }else if(isSameUserName(value)){
+                            return "username already taken";
+                          }
+                          else{
+                            return null;
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                      obscureText:true,
+                      obscuringCharacter: "*",
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          hintText: "password",
+                          label: const Text("Enter Password"),
+                          border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(30),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock_outline
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value==null||value.isEmpty){
+                            return "Please enter password";
+                          }else{
+                            return null;
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                      obscureText:!showPassword,
+                      obscuringCharacter: "*",
+                        controller: confirmPasswordController,
+                        decoration: InputDecoration(
+                          hintText: "confirm password",
+                          label: const Text("Confirm Password"),
+                          border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(30),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock_outline
+                          ),
+                          suffixIcon: 
+                        GestureDetector(
+                          onTap: () {
+                            showPassword=!showPassword;
+                            setState(() {
+                              
+                            });
+                          },
+                          
+                          child:showPassword?
+                            const Icon(Icons.visibility_off_outlined,):
+                            const Icon(Icons.visibility_outlined)
                         )
-                        )
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value==null||value.isEmpty){
+                            return "Please Confirm Password";
+                          }else if(passwordController.text != value){
+                            isConfirmPassword=true;
+                            return "Please Enter Same Password";
+                          }else{
+                            return null;
+                          }
+                        },
+                        // onFieldSubmitted: (value) {
+                        //   if(confirmPasswordController!=passwordController.text){
+                        //     isConfirmPassword=false;
+                        //   }
+                        //   signUpFormKey.currentState!.validate();
+                        // }
+            
+                        // onFieldSubmitted: (value) {
+                        //   if(value==passwordController.text){
+                        //     return null;
+                        //   }else{
+                        //     return "Please re-enter correct password"
+                        //   }
+                        // },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 50,
+                        //color: const Color.fromRGBO(2, 167, 177, 1),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(2, 167, 177, 1),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child:ElevatedButton(
+                          onPressed: (){
+                            setState(() {
+                              bool signUpValidation=signUpFormKey.currentState!.validate();
+            
+                              if(signUpValidation){
+                                // userInfoList.add(
+                                //   UserInfo(
+                                //   fullNameController.text,
+                                //   userNameController.text, 
+                                //   passwordController.text,
+                                //   )
+                                // );
+                                if(isSameUserName(userNameController.text)){
+                                  signUpFormKey.currentState!.validate();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:Text("username isn't awailable"),
+                                  )
+                                );
+                                // if(confirmPasswordController==passwordController.text){
+                                //   //isConfirmPassword=false;
+                                //   signUpFormKey.currentState!.validate();
+                                // }
+                                //signUpFormKey.currentState!.validate();
+                                }
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:Text("SignUp Successful"),
+                                  )
+                                );
+                                addUser(
+                                  Users(
+                                    userNameController.text,
+                                    passwordController.text,
+                                    fullNameController.text,
+                                    emailController.text
+                                  )
+                                );
+                                isSignUp=false;
+                                showPassword = false;
+                                clearController();
+                              }
+                              else{
+                                ScaffoldMessenger.of(context).showSnackBar(  
+                                const SnackBar(
+                                    content:Text("Please Enter Data") 
+                                  ),
+                                );
+                              }
+                            }
+                          );  
+                        }, 
+                        style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                             Color.fromARGB(255, 124, 1, 246),
+                          ),
+                          foregroundColor: MaterialStatePropertyAll(
+                            Color.fromRGBO(232, 237, 250, 1),
+                          ),
+                        ),
+                        child:const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        ),
                       )
-                    ],
-                  ),
-                  const SizedBox(height: 20,),
-                ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Already have an account ? "
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            clearController();
+                            setState(() {
+                              isSignUp=false;
+                            });
+                          },
+                          child:const Text("Login ",
+                          style: TextStyle(
+                            color: Colors.blue
+                          )
+                          )
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 20,),
+                  ],
+                ),
               ),
             ),
           ),

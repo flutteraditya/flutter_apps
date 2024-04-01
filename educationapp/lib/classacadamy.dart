@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 
 class Courses{
-
+  int? courseId;
   String courseName;
   String batch1;
   String batch2;
@@ -18,6 +18,7 @@ class Courses{
 
   Courses(
     {
+      this.courseId,
       required this.courseName,
       required this.batch1,
       required this.batch2,
