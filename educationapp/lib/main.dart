@@ -35,7 +35,7 @@ void main() async{
       );
       await db.execute(
         '''
-          CREATE TABLE courcesList(
+          CREATE TABLE coursesList(
             courseId INTEGER PRIMARY KEY,
             courseName TEXT,
             batch1 TEXT,
@@ -43,7 +43,7 @@ void main() async{
             batch3 TEXT,
             batch4 TEXT,
             img TEXT,
-            amount INT,
+            amount INT
           )
         '''
       );
@@ -62,7 +62,7 @@ Future insertData(String tableName,dynamic obj)async{
     obj.retMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
-  print(obj);
+  //print(obj);
 }
 
 Future deleteData(String tableName,String where,List whereargs,dynamic obj)async{
@@ -84,7 +84,7 @@ Future updateData(String tableName,String where,List whereargs,dynamic obj)async
     where: where,
     whereArgs: whereargs
   );
-  print(obj);
+  //print(obj);
 }
 
 Future<List<Map<String,dynamic>>> getData(String tableName)async{

@@ -1,6 +1,7 @@
 
 import 'package:educationapp/batches.dart';
 import 'package:educationapp/home.dart';
+import 'package:educationapp/main.dart';
 import 'package:educationapp/mycourses.dart';
 import 'package:educationapp/profile.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class Courses{
   String batch3;
   String? batch4;
   String? img;
-  double amount;
+  int amount;
 
   Courses(
     {
@@ -28,12 +29,43 @@ class Courses{
       required this.amount
     }
   );
+
+  Map<String,Object?> retMap(){
+
+    return {
+      "courseName": courseName,
+      "batch1": batch1,
+      "batch2": batch2,
+      "batch3": batch3,
+      "batch4": batch4,
+      "img": img,
+      "amount": amount
+    };
+  }
+}
+Future<void> getCourseData()async{
+  List demo = await getData("coursesList");
+  
+  courses = List.generate(
+    demo.length, 
+    (index){
+      return Courses(
+        courseName: demo[index]["courseName"], 
+        batch1: demo[index]["batch1"], 
+        batch2: demo[index]["batch2"], 
+        batch3: demo[index]["batch3"],
+        batch4: demo[index]["batch4"],
+        img: demo[index]["img"],
+        amount: demo[index]["amount"]
+      );
+    }
+  );
 }
 
 List courses = [
-  Courses(courseName: "JEE", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",img:"jee.png", amount: 25000),
-  Courses(courseName: "NEET", batch1: "Physics", batch2: "Chemistry", batch3: "Biology",img: "neet.jpeg", amount: 20000),
-  Courses(courseName: "MHTCET", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",batch4: "Biology",img: "cet.jpg", amount: 15000),
+  // Courses(courseName: "JEE", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",img:"jee.png", amount: 25000),
+  // Courses(courseName: "NEET", batch1: "Physics", batch2: "Chemistry", batch3: "Biology",img: "neet.jpeg", amount: 20000),
+  // Courses(courseName: "MHTCET", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",batch4: "Biology",img: "cet.jpg", amount: 15000),
 ];
 
 List getColor1 = [

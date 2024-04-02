@@ -1,3 +1,6 @@
+
+import 'package:educationapp/classacadamy.dart';
+import 'package:educationapp/main.dart';
 import 'package:flutter/material.dart';
 
 class CoursesList extends StatefulWidget {
@@ -7,7 +10,36 @@ class CoursesList extends StatefulWidget {
   State<CoursesList> createState() => _CoursesListState();
 }
 
+TextEditingController courseNameController = TextEditingController();
+TextEditingController batch1Controller = TextEditingController();
+TextEditingController batch2Controller = TextEditingController();
+TextEditingController batch3Controller = TextEditingController();
+TextEditingController batch4Controller = TextEditingController();
+TextEditingController urlController = TextEditingController();
+TextEditingController amountController = TextEditingController();
+bool isEdit = false;
 class _CoursesListState extends State<CoursesList> {
+
+  Future<void> onSubmit()async{
+    Courses obj = Courses(
+      courseName: courseNameController.text, 
+      batch1: batch1Controller.text, 
+      batch2: batch2Controller.text, 
+      batch3: batch3Controller.text, 
+      amount: int.parse(amountController.text),
+    );
+    if(isEdit){
+
+    }
+    else{
+      insertData("coursesList", obj);
+      await getCourseData();
+    }
+    setState(() {
+      
+    });
+  }
+
 
   void addCourseBottomSheet(){
     showModalBottomSheet(
@@ -38,6 +70,7 @@ class _CoursesListState extends State<CoursesList> {
                   children: [
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: courseNameController,
                       decoration: InputDecoration(
                         hintText: "course name",
                         label: const Text("Enter Course Name"),
@@ -48,6 +81,7 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: batch1Controller,
                       decoration: InputDecoration(
                         hintText: "batch1 name",
                         label: const Text("Enter Batch1"),
@@ -58,6 +92,7 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: batch2Controller,
                       decoration: InputDecoration(
                         hintText: "batch2 name",
                         label: const Text("Enter Batch2"),
@@ -68,6 +103,7 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: batch3Controller,
                       decoration: InputDecoration(
                         hintText: "batch3 name",
                         label: const Text("Enter Batch3"),
@@ -78,6 +114,7 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: batch4Controller,
                       decoration: InputDecoration(
                         hintText: "batch4 name (optional)",
                         label: const Text("Enter Batch4 (optional)"),
@@ -88,6 +125,7 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: urlController,
                       decoration: InputDecoration(
                         hintText: "path",
                         label: const Text("Enter Image URL"),
@@ -98,9 +136,9 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      controller: amountController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        
                         hintText: "course fees",
                         label: const Text("Enter Course Amount"),
                         border: OutlineInputBorder(
@@ -110,11 +148,13 @@ class _CoursesListState extends State<CoursesList> {
                     ),
                     const SizedBox(height: 20,),
                     ElevatedButton(
-                      onPressed: (){}, 
+                      onPressed: (){
+                        onSubmit();
+                      }, 
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey,
                         foregroundColor: Colors.black,
-                        fixedSize: Size(double.infinity, 50),
+                        fixedSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)
 
@@ -147,7 +187,7 @@ class _CoursesListState extends State<CoursesList> {
           right: 10,
         ),
         child: ListView.builder(
-          itemCount: 4,
+          itemCount: courses.length,
           itemBuilder: (context, index) {
             
             return GestureDetector(
@@ -162,7 +202,7 @@ class _CoursesListState extends State<CoursesList> {
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.grey[300],
                 ),
-                child: const Text("User List"),
+                child: Text(courses[index].courseName),
               ),
             );
           }
