@@ -102,6 +102,7 @@ class _LogInPageState extends State{
     for(int i=0;i<validUsers.length;i++){
       if(userNameController.text == validUsers[i].userName){
         if(passwordController.text == validUsers[i].password){
+          getMyCourseData();
           return validUsers[i];
         }
       }
@@ -370,7 +371,7 @@ class _LogInPageState extends State{
           Container(
             color: const Color.fromRGBO(232, 237, 250, 1),
             child: Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 50,
                 left: 50,
                 right: 50,

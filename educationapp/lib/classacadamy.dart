@@ -1,9 +1,10 @@
 
-import 'package:educationapp/batches.dart';
-import 'package:educationapp/home.dart';
+import 'package:educationapp/classacadamy/batches.dart';
+import 'package:educationapp/classacadamy/home.dart';
+import 'package:educationapp/login.dart';
 import 'package:educationapp/main.dart';
-import 'package:educationapp/mycourses.dart';
-import 'package:educationapp/profile.dart';
+import 'package:educationapp/classacadamy/mycourses.dart';
+import 'package:educationapp/classacadamy/profile.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,7 +15,7 @@ class Courses{
   String batch2;
   String batch3;
   String? batch4;
-  String? img;
+  String img;
   int amount;
 
   Courses(
@@ -25,7 +26,7 @@ class Courses{
       required this.batch2,
       required this.batch3,
       this.batch4,
-      this.img,
+      required this.img,
       required this.amount
     }
   );
@@ -50,6 +51,7 @@ Future<void> getCourseData()async{
     demo.length, 
     (index){
       return Courses(
+        courseId: demo[index]["courseId"],
         courseName: demo[index]["courseName"], 
         batch1: demo[index]["batch1"], 
         batch2: demo[index]["batch2"], 
@@ -61,6 +63,42 @@ Future<void> getCourseData()async{
     }
   );
 }
+
+class MyCourses{
+  String userName;
+  int courseId;
+  int? id;
+
+  MyCourses({required this.courseId,required this.userName,this.id});
+
+  Map<String,Object?> retMap(){
+
+    return {
+      "courseId": courseId,
+      "userName": userName
+    };
+  }
+}
+
+Future<void> getMyCourseData()async{
+  List demo= await getData("userCourses");
+  myCourses = [];
+  for(int i=0;i<demo.length;i++){
+    if(demo[i]["userName"]==currentUser!.userName){
+      Courses? demo1;
+      for(int j=0;j<courses.length;j++){
+        if(demo[i]["courseId"]== courses[j].courseId){
+          demo1 = courses[j];
+          break;
+        }
+      }
+      myCourses.add(demo1);
+      //print(myCourses);
+    }
+  }
+}
+
+List myCourses = [];
 
 List courses = [
   // Courses(courseName: "JEE", batch1: "Physics", batch2: "Chemistry", batch3: "Maths",img:"jee.png", amount: 25000),

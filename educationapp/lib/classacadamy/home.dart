@@ -1,7 +1,9 @@
-import 'package:educationapp/bookstore.dart';
+import 'package:educationapp/classacadamy/batches.dart';
+import 'package:educationapp/home/bookstore.dart';
 import 'package:educationapp/classacadamy.dart';
-import 'package:educationapp/leaderboard.dart';
+import 'package:educationapp/home/leaderboard.dart';
 import 'package:educationapp/login.dart';
+import 'package:educationapp/main.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_svg/svg.dart';
 
@@ -14,6 +16,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool seeAll = false;
+
+  Future<void> onButtonPressed(Courses obj)async{
+    for(int i=0;i<myCourses.length;i++){
+      if(obj.courseId == myCourses[i].courseId){
+        return;
+      }
+    }
+      await insertData(
+        "userCourses",
+        MyCourses(courseId: obj.courseId!, userName: currentUser!.userName)
+      );
+      await getMyCourseData();
+      getBatchData();
+      setState(() {
+        
+      });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -335,7 +355,10 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const Spacer(),
                                         ElevatedButton(
-                                          onPressed: (){}, 
+                                          onPressed: (){
+                                            onButtonPressed(courses[index]);
+                                            //print(myCourses);
+                                          }, 
                                           child: const Text(
                                             "Add Course",
                                             style: TextStyle(
@@ -353,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                                     height: 150,
                                     width: 100,
                                     child:
-                                        Image.asset("assets/images/${courses[index].img}"),
+                                        Image.network(courses[index].img,height: 150,width: 100,),
                                   ),
                                 ],
                               ),
@@ -418,8 +441,10 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         height: 154,
                                         width: 154,
-                                        child: Image.asset(
-                                          "assets/images/${courses[index].img}",
+                                        child: Image.network(
+                                          "${courses[index].img}",
+                                          height: 150,
+                                          width: 100,
                                         ),
                                       ),
                                     ],

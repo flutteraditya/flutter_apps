@@ -72,7 +72,7 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: myCourses.length,
                 itemBuilder: (context,index){
                   return Container(
                             height: 190,
@@ -99,25 +99,30 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
                             ),
                             child: Row(
                               children: [
-                                const Column(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
                                       child: Text(
-                                        " Batch 2024",
-                                        style: TextStyle(
+                                        "${myCourses[index].courseName} Batch 2024",
+                                        style: const TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500,
                                           color: Color.fromRGBO(255, 255, 255, 1),
                                         ),
                                       ),
                                     ),
+                                    Text(myCourses[index].batch1),
+                                    Text(myCourses[index].batch2),
+                                    Text(myCourses[index].batch3),
+                                    (myCourses[index].batch4!=null)? Text(myCourses[index].batch4): const SizedBox(),
                                   ],
                                 ),
                                 const Spacer(),
                                 SizedBox(
                                   height: 150,
                                   width: 150,
-                                  child: Image.asset("assets/images/neet.jpeg"),
+                                  child: Image.network(myCourses[index].img,height: 150,width: 100,),
                                 ),
                               ],
                             ),

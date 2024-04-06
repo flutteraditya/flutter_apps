@@ -121,6 +121,7 @@ class _BookStoreState extends State<BookStore>{
                               const Spacer(),
                               Container(
                                 width: 230,
+                                padding: EdgeInsets.zero,
                                 child: ElevatedButton(
                                   onPressed: (){}, 
                                   child: const Text("Add To Cart")

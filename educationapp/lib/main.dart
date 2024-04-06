@@ -1,4 +1,5 @@
-import 'package:educationapp/reviews.dart';
+import 'package:educationapp/classacadamy.dart';
+import 'package:educationapp/profile/reviews.dart';
 import 'package:flutter/material.dart';
 //import 'package:educationapp/classacadamy.dart';
 import 'package:sqflite/sqflite.dart';
@@ -11,7 +12,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   db = openDatabase(
-    join(await getDatabasesPath(),"acco.db"),
+    join(await getDatabasesPath(),"a.db"),
     version: 1,
     onCreate: (db, version) async{
       await db.execute(
@@ -47,8 +48,19 @@ void main() async{
           )
         '''
       );
+      await db.execute(
+        '''
+          CREATE TABLE userCourses(
+            myCourseId INTEGER PRIMARY KEY,
+            userName TEXT,
+            courseId INT
+          )
+        '''
+      );
     },
   );
+  getMyCourseData();
+  getCourseData();
   getReviewData();
   getUserData();
   runApp(const MainApp());

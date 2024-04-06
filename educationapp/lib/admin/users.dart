@@ -1,4 +1,5 @@
 import 'package:educationapp/login.dart';
+import 'package:educationapp/main.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,6 +13,14 @@ class UsersList extends StatefulWidget{
 
 class _UsersListState extends State{
 
+  Future<void> deleteUser()async{
+    await deleteData("userInfo", "userName= ?", [currentUser!.userName], currentUser);
+    await getUserData();
+    setState(() {
+      
+    });
+  }
+
   @override
   Widget build(BuildContext context){
 
@@ -22,6 +31,7 @@ class _UsersListState extends State{
         backgroundColor: Colors.grey,
       ),
       body: Container(
+        padding: const EdgeInsets.all(0),
         //color:  Colors.grey[200],
         //height: 200,
         child: Column(
@@ -59,7 +69,14 @@ class _UsersListState extends State{
                                 children: [
                                   Text("${index+1}."),
                                   const SizedBox(width: 5,),
-                                  Text("${validUsers[index].name}")
+                                  Text("${validUsers[index].name}"),
+                                  const Spacer(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      deleteUser();
+                                    },
+                                    child: const Icon(Icons.delete_outline),
+                                  ),
                                 ],
                               ),
                             );

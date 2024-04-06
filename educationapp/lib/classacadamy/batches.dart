@@ -7,6 +7,26 @@ class BachesPage extends StatefulWidget {
   @override
   State<BachesPage> createState() => _BachesPageState();
 }
+class Batches{
+  String batchName;
+  String courseName;
+
+  Batches({required this.courseName,required this.batchName});
+}
+
+List batches = [];
+
+void getBatchData(){
+  batches = [];
+  for(int i= 0;i<myCourses.length;i++){
+    batches.add(Batches(courseName: myCourses[i].courseName, batchName: myCourses[i].batch1));
+    batches.add(Batches(courseName: myCourses[i].courseName, batchName: myCourses[i].batch2));
+    batches.add(Batches(courseName: myCourses[i].courseName, batchName: myCourses[i].batch3));
+    if(myCourses[i].batch4!= null){
+      batches.add(Batches(courseName: myCourses[i].courseName, batchName: myCourses[i].batch4));
+    }
+  }
+}
 
 class _BachesPageState extends State<BachesPage> {
   @override
@@ -72,7 +92,7 @@ class _BachesPageState extends State<BachesPage> {
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: batches.length,
                 itemBuilder: (context,index){
                   return Container(
                             height: 190,
@@ -99,12 +119,23 @@ class _BachesPageState extends State<BachesPage> {
                             ),
                             child: Row(
                               children: [
-                                const Column(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
                                       child: Text(
-                                        " Batch 2024",
-                                        style: TextStyle(
+                                        "${batches[index].courseName} Batch 2024",
+                                        style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color.fromRGBO(255, 255, 255, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Text(
+                                        "${batches[index].batchName}",
+                                        style: const TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500,
                                           color: Color.fromRGBO(255, 255, 255, 1),
@@ -113,12 +144,12 @@ class _BachesPageState extends State<BachesPage> {
                                     ),
                                   ],
                                 ),
-                                const Spacer(),
-                                SizedBox(
-                                  height: 150,
-                                  width: 150,
-                                  child: Image.asset("assets/images/neet.jpeg"),
-                                ),
+                                // const Spacer(),
+                                // SizedBox(
+                                //   height: 150,
+                                //   width: 150,
+                                //   child: Image.network("https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"),
+                                // ),
                               ],
                             ),
                           );

@@ -1,7 +1,7 @@
 import 'package:educationapp/classacadamy.dart';
 import 'package:educationapp/login.dart';
 import 'package:educationapp/main.dart';
-import 'package:educationapp/reviews.dart';
+import 'package:educationapp/profile/reviews.dart';
 import 'package:flutter/material.dart';
 
 
