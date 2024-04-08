@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantsapp/detailscreenpage.dart';
 import 'package:plantsapp/homepage.dart';
 
 class VarificationPage extends StatefulWidget {
@@ -127,7 +128,7 @@ just sent you.''',
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context)=> const HomePage(),
+                  builder: (context)=> const DetailScreenPage(),
                 ),
               );
             }, 
