@@ -12,12 +12,14 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: const Color.fromRGBO(251, 247, 248, 1),
+      body: ListView(
+        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
             "assets/png/design01.png",
             height: 120,
+            alignment: Alignment.topLeft,
           ),
           Container(
             padding: const EdgeInsets.symmetric(
