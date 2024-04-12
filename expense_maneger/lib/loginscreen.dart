@@ -39,6 +39,7 @@ class _LogInScreenState extends State<LogInScreen> {
           Container(
             height: 50,
             width: 280,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromRGBO(255, 255, 255, 1),
@@ -52,17 +53,10 @@ class _LogInScreenState extends State<LogInScreen> {
               ],
             ),
             child: TextFormField(
-              decoration: InputDecoration(
-                labelText: "username",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    style: BorderStyle.none
-                  ),
-                ),
-                focusColor: const Color.fromRGBO(255, 255, 255, 1),
+              decoration: const InputDecoration(
+                hintText: "username",
+                border: InputBorder.none,
+                focusColor: Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -70,6 +64,7 @@ class _LogInScreenState extends State<LogInScreen> {
           Container(
             height: 50,
             width: 280,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromRGBO(255, 255, 255, 1),
@@ -83,10 +78,11 @@ class _LogInScreenState extends State<LogInScreen> {
               ],
             ),
             child: TextFormField(
-              decoration: InputDecoration(
-                labelText: "password",
+              decoration: const InputDecoration(
+                //labelText: "password",
+                hintText: "password",
                 border:InputBorder.none,
-                focusColor: const Color.fromRGBO(255, 255, 255, 1),
+                focusColor: Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
