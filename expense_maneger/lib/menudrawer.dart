@@ -1,3 +1,4 @@
+import 'package:expense_maneger/categoryscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -131,6 +132,12 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   onTap: () {
                     count = 3;
                     Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context)=> const CategoryScreen(),
+                      ),
+                    );
                     setState(() {
                       
                     });
