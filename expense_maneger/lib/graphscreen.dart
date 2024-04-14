@@ -21,7 +21,7 @@ class _GraphScreenState extends State<GraphScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Categories",
+          "Graphs",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,

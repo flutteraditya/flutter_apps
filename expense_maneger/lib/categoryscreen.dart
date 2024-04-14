@@ -24,6 +24,55 @@ class _CategoryScreenState extends State<CategoryScreen>
     super.dispose();
   }
 
+  void categoryBottomSheet(){
+
+    showModalBottomSheet(
+      context: context, 
+      builder: (context){
+        return Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.15),
+                offset: Offset(0,-3),
+                blurRadius: 8,
+              ),
+            ],
+          ),
+          child: ListView(
+            children: [
+              const SizedBox(height: 35,),
+              Container(
+                height: 74,
+                width: 74,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(74),
+                  image: const DecorationImage(
+                    image: AssetImage(
+                      "assetName",
+                    ),
+                  ),
+                ),
+              ),
+              const Text(
+                "Add",
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromRGBO(0, 0, 0, 1),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,7 @@
 import 'package:expense_maneger/categoryscreen.dart';
+import 'package:expense_maneger/graphscreen.dart';
+import 'package:expense_maneger/transactionscreen.dart';
+import 'package:expense_maneger/trashscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,9 +12,9 @@ class MenuDrawer extends StatefulWidget {
   @override
   State<MenuDrawer> createState() => _MenuDrawerState();
 }
-
+int count = 1;
 class _MenuDrawerState extends State<MenuDrawer> {
-  int count = 1;
+  //int count = 1;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -48,6 +51,12 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   onTap: () {
                     count = 1;
                     Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context)=> const TransactionScreen(),
+                      ),
+                    );
                     setState(() {
                       
                     });
@@ -90,6 +99,12 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   onTap: () {
                     count = 2;
                     Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context)=> const GraphScreen(),
+                      ),
+                    );
                     setState(() {
                       
                     });
@@ -180,6 +195,12 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   onTap: () {
                     count = 4;
                     Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context)=> const TrashScreen(),
+                      ),
+                    );
                     setState(() {
                       
                     });
