@@ -51,17 +51,10 @@ class _LogInScreenState extends State<SignUpScren> {
               ],
             ),
             child: TextFormField(
-              decoration: InputDecoration(
-                labelText: "name",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    style: BorderStyle.none
-                  ),
-                ),
-                focusColor: const Color.fromRGBO(255, 255, 255, 1),
+              decoration: const InputDecoration(
+                hintText: "name",
+                border: InputBorder.none,
+                focusColor: Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
