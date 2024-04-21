@@ -46,26 +46,108 @@ class _CategoryScreenState extends State<CategoryScreen>
           child: ListView(
             children: [
               const SizedBox(height: 35,),
-              Container(
-                height: 74,
-                width: 74,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(74),
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      "assetName",
+              Column(
+                children: [
+                  Container(
+                    height: 74,
+                    width: 74,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(74),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          "assets/png/04.png",
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  const Text(
+                    "Add",
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(0, 0, 0, 1),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Image URL",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400
+                        ),
+                      ),
+                      const SizedBox(height: 5,),
+                      SizedBox(
+                        height: 36,
+                        width: 316,
+                        child: TextFormField(
+                          cursorHeight: 20,
+                          decoration: InputDecoration(
+                            hintText: "Enter URL",
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      const Text(
+                        "Category",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400
+                        ),
+                      ),
+                      const SizedBox(height: 5,),
+                      SizedBox(
+                        height: 36,
+                        width: 316,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Enter category name",
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                          // Navigator.pushReplacement(
+                          //   context, 
+                          //   MaterialPageRoute(builder: (context)=> const TransactionScreen()),
+                          // );
+                    }, 
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(123, 40),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 45,
+                        vertical: 8,
+                      ),
+                      foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                      backgroundColor: const Color.fromRGBO(14, 161, 125, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(67)
+                      ),
+                    ),
+                    child: const Text(
+                      "Add",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const Text(
-                "Add",
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(0, 0, 0, 1),
-                ),
-              ),
+              
             ],
           ),
         );
@@ -140,7 +222,7 @@ class _CategoryScreenState extends State<CategoryScreen>
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){
-          //addBottomSheet();
+          categoryBottomSheet();
           setState(() {
             
           });
