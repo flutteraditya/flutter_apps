@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pet_care_app/view/login.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -35,23 +37,23 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/splashimg.png"),
+            SvgPicture.asset("assets/splashimg.svg"),
             const SizedBox(height: 10,),
-            const Text(
+            Text(
               "PetGuardian",
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 32,
                 fontWeight: FontWeight.w600,
-                color: Color.fromRGBO(255, 255, 255, 1)
+                color: const Color.fromRGBO(255, 255, 255, 1)
               ),
             ),
             const SizedBox(height: 10,),
-            const Text(
+            Text(
               "Your Pets' Lifelong Protector",
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Color.fromRGBO(255, 255, 255, 1)
+                color: const Color.fromRGBO(255, 255, 255, 1)
               ),
             ),
           ],

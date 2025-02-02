@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:inherited_widget_demo/login.dart';
+import 'package:inherited_widget_demo/home.dart';
 
 void main() {
   runApp(const MainApp());
@@ -32,20 +34,49 @@ class DataHouse extends InheritedWidget{
 
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget{
   const MainApp({super.key});
 
+  @override
+  State createState() => _MainAppState();
+
+}
+
+class _MainAppState extends State{
+  int id = 11;
+  String name = "aditya";
+  String userName = "adi";
 
   @override
   Widget build(BuildContext context) {
-
-    return const DataHouse(
-      id: 11, 
-      name: "aditya", 
-      userName: "adi", 
+    log("message");
+    return DataHouse(
+      id: id, 
+      name: name, 
+      userName: userName, 
       child: MaterialApp(
-        home: LogIn(),
         debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(width: double.infinity,),
+              const Home(),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: (){
+                  id = 45;
+                  name = "adityakhetre";
+                  userName = "aditya";
+                  setState(() {
+                  });
+                },
+                child: const Text("change"),
+              ),
+              const SizedBox(height: 20,),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -2,9 +2,7 @@ import 'package:expense_maneger/categoryscreen.dart';
 import 'package:expense_maneger/graphscreen.dart';
 import 'package:expense_maneger/transactionscreen.dart';
 import 'package:expense_maneger/trashscreen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({super.key});

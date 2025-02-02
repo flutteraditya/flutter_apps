@@ -31,4 +31,6 @@ class AppColors{
   static const Color appBarColor = Color.fromRGBO(245, 245, 245, 1);
   static const Color appBarTitleColor = Color.fromRGBO(58, 61, 63, 1);
 
+  static const Color sliderColor = Color.fromRGBO(232, 232, 232, 1);
+
 }

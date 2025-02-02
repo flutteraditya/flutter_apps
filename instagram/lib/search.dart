@@ -36,6 +36,7 @@ class _SearchState extends State<Search>{
                 
                 decoration: InputDecoration(
                   hintText: "search",
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius:BorderRadius.circular(10) ,
@@ -197,18 +198,19 @@ class _SearchState extends State<Search>{
           setState(() {
             bottmNBCount = index;
             if(index==0){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Assign1()));
+              //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Assign1()));
+              Navigator.pop(context);
             }
             if(index==1){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Search()),
-              );
+              // Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Search()),
+              // );
             }
             if(index==3){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Reels()),
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Reels()),
               );
             }
             if(index==4){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Profile()),
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Profile()),
               );
             }
           });

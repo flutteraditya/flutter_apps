@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/gallery.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(width: double.infinity,),
+            const SizedBox(width: double.infinity,height: 0,),
             Container(
               width: 400,
               decoration: const BoxDecoration(
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
                     margin: const EdgeInsets.only(left: 35),
                     height: 130,
                     width: 315,
-                    child: const Text(
+                    child: Text(
                       "Dancing between \nThe shadows \nOf rhythm",
-                      style: TextStyle(
+                      style: GoogleFonts.inter(
                         fontSize: 36,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
@@ -65,9 +66,9 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         "Get started",
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
@@ -94,9 +95,9 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         "Continue with Email",
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
@@ -108,13 +109,14 @@ class _HomePageState extends State<HomePage> {
                     height: 35,
                     width: 230,
                     alignment: Alignment.center,
-                    child: const Text(
-                      "by continuing you agree to terms \n of services and Privacy policy",
-                      style: TextStyle(
+                    child: Text(
+                      "by continuing you agree to terms \nof services and Privacy policy",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600,
                         fontSize: 14,
                         height: 1.2,
-                        color: Color.fromRGBO(203, 200, 200, 1)
+                        color: const Color.fromRGBO(203, 200, 200, 1)
                       ),
                     ),
                   ),

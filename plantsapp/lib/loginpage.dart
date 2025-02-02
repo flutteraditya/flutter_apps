@@ -43,6 +43,7 @@ class _LogInPageState extends State<LogInPage> {
                     decoration: InputDecoration(
                       hintText: "Mobile Number",
                       prefixIcon: const Icon(Icons.call_outlined),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

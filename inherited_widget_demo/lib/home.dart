@@ -9,12 +9,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  TextEditingController changeData = TextEditingController();
   @override
   Widget build(BuildContext context) {
     DataHouse obj = DataHouse.of(context);
-    return Scaffold(
-      body: Column(
+    return  Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(width: double.infinity,),
           SizedBox(
@@ -36,7 +37,6 @@ class _HomeState extends State<Home> {
           ),
           const SizedBox(height: 20,),
         ],
-      ),
     );
   }
 }

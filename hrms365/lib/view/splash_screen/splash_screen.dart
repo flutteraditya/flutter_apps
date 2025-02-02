@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hrms365/controller/splash_controller/splash_controller.dart';
+import 'package:hrms365/res/assets/images/app_images.dart';
 import 'package:hrms365/res/colors/app_colors.dart';
 import 'package:hrms365/res/components/round_button.dart';
+import 'package:hrms365/res/routes/route_names.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -29,6 +33,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: [
                   SizedBox(width: width,height: height*.2,),
                   //image
+                  Image.asset(
+                    AppImages.appLogo,
+                    height: 100,
+                  ),
                   const SizedBox(height: 20,),
                   const Text(
                     "Simplify your Cleverwise access with\nour effortless sign-in process",
@@ -44,8 +52,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   RoundButton(
                     width: width,
                     title: "GET STARTED", 
-                    onPressed: (){
-
+                    onPressed: ()async{
+                      if(await SplashController.isLoged()){
+                        Get.offAllNamed(RouteNames.home);
+                      }
+                      else{
+                        Get.offAllNamed(RouteNames.loginScreen);
+                      }
                     },
                   ),
                   const SizedBox(

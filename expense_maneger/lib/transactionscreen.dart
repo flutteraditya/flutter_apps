@@ -44,6 +44,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     width: 316,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -52,7 +53,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   ),
                   const SizedBox(height: 20,),
                   const Text(
-                    "Date",
+                    "Amount",
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w400
@@ -64,6 +65,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     width: 316,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -72,7 +74,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   ),
                   const SizedBox(height: 20,),
                   const Text(
-                    "Date",
+                    "Category",
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w400
@@ -84,6 +86,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     width: 316,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -92,7 +95,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   ),
                   const SizedBox(height: 20,),
                   const Text(
-                    "Date",
+                    "Description",
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w400
@@ -104,6 +107,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     width: 316,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 15,),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),

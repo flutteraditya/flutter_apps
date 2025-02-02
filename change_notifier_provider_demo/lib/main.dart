@@ -100,6 +100,8 @@ class EmployeeModelClass extends ChangeNotifier{
     }
   );
 
+  set setEmpSalary(empSalary)=> this.empSalary = empSalary;
+
   void changeData(int empSalary,String empPosition){
     this.empSalary = empSalary;
     this.empPosition = empPosition;

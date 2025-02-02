@@ -214,7 +214,8 @@ class _Assign1State extends State<Assign1>{
           setState(() {
             bottmNBCount = index;
             if(index==0){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Assign1()));
+              //Navigator.push(context,MaterialPageRoute(builder: (context) => const Assign1()));
+              
             }
             if(index==1){
               Navigator.push(context,MaterialPageRoute(builder: (context) => const Search()),

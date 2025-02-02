@@ -26,29 +26,41 @@ class _HomePageState extends State<HomePage> {
             height: 30,
             width: double.infinity,
             margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0,0),
+                  spreadRadius: 0,
+                  blurRadius: 02,
+                  color: Colors.black
+                ),
+              ]
+            ),
             child: Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  width: 50,
+                  width: 30,
                   child: Text(
                     "${fetchedData[i].empid}"
                   ),
                 ),
                 SizedBox(
-                  width: 200,
+                  width: 150,
                   child: Text(
                     "${fetchedData[i].empName}"
                   ),
                 ),
                 SizedBox(
-                  width: 50,
+                  width: 30,
                   child: Text(
                     "${fetchedData[i].empAge}"
                   ),
                 ),
                 SizedBox(
-                  width: 90,
+                  width: 60,
                   child: Text(
                     "${fetchedData[i].empSal}"
                   ),
@@ -99,20 +111,16 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 TextEditingController idController = TextEditingController();
-                ModelForOne? md;
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => 
                   
                   AlertDialog(
-                    title: (md == null) ?
-                    const Text("Delete"):
-                    Text("${md!.status}"),
-                    content: (md == null) ?
-                    const Text("Enter Id to Delete"):
-                    Text("${md!.message}"),
+                    title: 
+                    const Text("Delete"),
+                    content: 
+                    const Text("Enter Id to Delete"),
                     actions: <Widget>[
-                      (md == null) ?
                       TextFormField(
                         controller: idController,
                         decoration: InputDecoration(
@@ -123,27 +131,45 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                      ) : const SizedBox(),
+                      ),
                       TextButton(
-                        onPressed: ()async{
-                          // ignore: unnecessary_null_comparison
-                          if(md != null){
-                            Navigator.of(context).pop();
-                          }else{
-                            md = await deleteData(int.parse(idController.text));
-                          }
-                          setState(() {
-                              
-                          });
+                        onPressed: () async {
+                          ModelForOne md =
+                              await deleteData(int.parse(idController.text));
+                          showDialog<String>(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: Text("${md.status}"),
+                              content: Text("${md.message}"),
+                              actions: <Widget>[
+                                // TextFormField(
+                                //   controller: idController,
+                                //   decoration: InputDecoration(
+                                //     border: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(5),
+                                //       borderSide: const BorderSide(
+                                //         color: Colors.blue,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
                         },
                         child: const Text('OK'),
                       ),
                     ],
                   ),
                 );
-                setState(() {
-                  
-                });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,

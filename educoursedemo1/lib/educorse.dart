@@ -19,7 +19,7 @@ class _EduCourseState extends State{
       backgroundColor: const Color.fromRGBO(205, 218, 218, 1),
       body: Padding(
         padding: const EdgeInsets.only(
-          top: 26
+          top: 46
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

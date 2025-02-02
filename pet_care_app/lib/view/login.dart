@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pet_care_app/view/dashboard.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,17 +22,17 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(width: double.infinity,),
-              const Text(
+              Text(
                 "Login",
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(245, 146, 69, 1),
+                  color: const Color.fromRGBO(245, 146, 69, 1),
                 ),
               ),
               const SizedBox(height: 20,),
-              Image.asset(
-                "assets/loginimg.png",
+              SvgPicture.asset(
+                "assets/loginimg.svg",
                 height: 194,
                 width: 184,
               ),
@@ -39,12 +41,12 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
                 width: 330,
                 alignment: Alignment.topLeft,
-                child: const Text(
+                child: Text(
                   "Email",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(194, 195, 204, 1)
+                    color: const Color.fromRGBO(194, 195, 204, 1)
                   ),
                 ),
               ),
@@ -56,10 +58,10 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: "PetGuardian@gmail.com",
-                    hintStyle: const TextStyle(
+                    hintStyle: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: Color.fromRGBO(194, 195, 204, 1)
+                      color: const Color.fromRGBO(194, 195, 204, 1)
                     ),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -87,12 +89,12 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
                 width: 330,
                 alignment: Alignment.topLeft,
-                child: const Text(
+                child: Text(
                   "Label",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(194, 195, 204, 1)
+                    color: const Color.fromRGBO(194, 195, 204, 1)
                   ),
                 ),
               ),
@@ -110,10 +112,10 @@ class _LoginPageState extends State<LoginPage> {
                       color: Color.fromRGBO(245, 146, 69, 1)
                     ),
                     hintText: "**********",
-                    hintStyle: const TextStyle(
+                    hintStyle: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: Color.fromRGBO(194, 195, 204, 1)
+                      color: const Color.fromRGBO(194, 195, 204, 1)
                     ),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -144,21 +146,21 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Forgot Password ? ",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(31, 32, 41, 1)
+                        color: const Color.fromRGBO(31, 32, 41, 1)
                       ),
                     ),
                     GestureDetector(
-                      child: const Text(
+                      child: Text(
                         "Click Here",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(31, 32, 41, 1)
+                          color: const Color.fromRGBO(31, 32, 41, 1)
                         ),
                       ),
                     ),
@@ -168,6 +170,12 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20,),
               ElevatedButton(
                 onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DashboardPage(),
+                    ),
+                  );
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -186,12 +194,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   backgroundColor: const Color.fromRGBO(245, 146, 69, 1),
                 ),
-                child: const Text(
+                child: Text(
                   "LOGIN",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Color.fromRGBO(255, 255, 255, 1)
+                    color: const Color.fromRGBO(255, 255, 255, 1)
                   ),
                 ), 
               ),
@@ -215,12 +223,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   backgroundColor: const Color.fromRGBO(245, 146, 69, 1),
                 ),
-                child: const Text(
+                child: Text(
                   "LOGIN WITH EMAIL",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Color.fromRGBO(255, 255, 255, 1)
+                    color: const Color.fromRGBO(255, 255, 255, 1)
                   ),
                 ), 
               ),
@@ -238,12 +246,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   backgroundColor: const Color.fromRGBO(245, 146, 69, 1),
                 ),
-                child: const Text(
+                child: Text(
                   "LOGIN WITH FACEBOOK",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Color.fromRGBO(255, 255, 255, 1)
+                    color: const Color.fromRGBO(255, 255, 255, 1)
                   ),
                 ), 
               ),
@@ -252,12 +260,12 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
                 width: 330,
                 alignment: Alignment.center,
-                child: const Text(
+                child: Text(
                   "By continue you agree to our\n    Terms & Privacy Policy",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(31, 32, 41, 1)
+                    color: const Color.fromRGBO(31, 32, 41, 1)
                   ),
                 ),
               ),

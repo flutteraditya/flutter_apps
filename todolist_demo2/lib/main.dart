@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'todolistpage.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart'as p;
+import 'package:todolist_demo2/model/notesmodel.dart';
 
 dynamic database;
 
@@ -9,12 +10,12 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   //runApp(const MainApp());
   database= await openDatabase(
-    p.join(await getDatabasesPath(),"todo7.db"),
+    p.join(await getDatabasesPath(),"td.db"),
     version: 1,
     onCreate: (db, version) {
       db.execute(
         '''CREATE TABLE todolist(
-          notesId INTEGER PRIMARY KEY AUTOINCRIMENT,
+          notesId INTEGER PRIMARY KEY AUTOINCREMENT,
           title TEXT,
           describe TEXT,
           date TEXT

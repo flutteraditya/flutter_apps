@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/bottomnavbar.dart';
 import 'package:music_app/player.dart';
 
 class GalleryPage extends StatefulWidget {
@@ -8,12 +10,46 @@ class GalleryPage extends StatefulWidget {
   State<GalleryPage> createState() => _GalleryPageState();
 }
 
+List songs = [
+  {
+    "img" : "gall01.png",
+    "name" : "Dead inside",
+    "year" : "2020"
+  },
+  {
+    "img" : "gall02.png",
+    "name" : "Alone",
+    "year" : "2023"
+  },
+  {
+    "img" : "gall03.png",
+    "name" : "Heartless",
+    "year" : "2023"
+  },
+];
+
+List popular = [
+  {
+    "img" : "gall04.png",
+    "name" : "We Are Chaos",
+    "year" : "2023",
+    "album" : "Easy Living"
+  },
+  {
+    "img" : "gall05.png",
+    "name" : "Smile ",
+    "year" : "2023",
+    "album" : "Berrechid"
+  }
+];
+
 class _GalleryPageState extends State<GalleryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(24, 24, 24, 1),
       body: ListView(
+        padding: const EdgeInsets.all(0),
         //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(width: double.infinity,),
@@ -32,13 +68,13 @@ class _GalleryPageState extends State<GalleryPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 225,width: 400,),
-                const SizedBox(
+                SizedBox(
                   child: Text(
                     "A.L.O.N.E",
-                    style: TextStyle(
+                    style: GoogleFonts.inter(
                       fontSize: 36,
                       fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                      color: const Color.fromRGBO(255, 255, 255, 1),
                     ),
                   ),
                 ),
@@ -61,12 +97,12 @@ class _GalleryPageState extends State<GalleryPage> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       "Subscribe",
-                      style: TextStyle(
+                      style: GoogleFonts.inter(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(19, 19, 19, 1),
+                      color: const Color.fromRGBO(19, 19, 19, 1),
                       ),
                     ),
                   ),
@@ -106,77 +142,41 @@ class _GalleryPageState extends State<GalleryPage> {
               ),
             ],
           ),
-          const Row(
+          Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 20,
                 height: 60,
               ),
               Text(
                 "Discography",
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(255, 46, 0, 1),
+                  color: const Color.fromRGBO(255, 46, 0, 1),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 "See all",
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(248, 162, 69, 1),
+                  color: const Color.fromRGBO(248, 162, 69, 1),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
             ],
           ),
           SizedBox(
             height: 181,
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 140,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                            image: AssetImage(
-                              "assets/gall01.png"
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
-                      const Text(
-                        "Dead inside",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(203, 200, 200, 1),
-                        ),
-                      ),
-                      const Text(
-                        "2020",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(132, 125, 125, 1),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
+              itemCount: songs.length,
+              itemBuilder: (context,i){
+                return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -194,268 +194,157 @@ class _GalleryPageState extends State<GalleryPage> {
                           width: 120,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            image: const DecorationImage(
+                            image: DecorationImage(
                               image: AssetImage(
-                                "assets/gall02.png"
+                                "assets/${songs[i]["img"]}"
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 10,),
-                        const Text(
-                          "Alone",
-                          style: TextStyle(
+                        Text(
+                          "${songs[i]["name"]}",
+                          style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(203, 200, 200, 1),
+                            color: const Color.fromRGBO(203, 200, 200, 1),
                           ),
                         ),
-                        const Text(
-                          "2023",
-                          style: TextStyle(
+                        Text(
+                          "${songs[i]["year"]}",
+                          style: GoogleFonts.inter(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(132, 125, 125, 1),
+                            color: const Color.fromRGBO(132, 125, 125, 1),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 140,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                            image: AssetImage(
-                              "assets/gall03.png"
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
-                      const Text(
-                        "Heartless",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(203, 200, 200, 1),
-                        ),
-                      ),
-                      const Text(
-                        "2023",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(132, 125, 125, 1),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                );
+              }
             ),
           ),
-          const Row(
+          Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 20,
                 height: 60,
               ),
               Text(
                 "Popular singles",
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(203, 200, 200, 1)
+                  color: const Color.fromRGBO(203, 200, 200, 1)
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 "See all",
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(248, 162, 69, 1),
+                  color: const Color.fromRGBO(248, 162, 69, 1),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
             ],
           ),
-          Container(
-            margin: const EdgeInsets.only(
-              left: 20,
-              right: 10,
-              bottom: 10,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 70,
-                  width: 65,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: const DecorationImage(
-                      image: AssetImage(
-                        "assets/gall04.png"
-                      ),
-                    ),
-                  ),
+          ListView.builder(
+            itemCount: popular.length,
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(0),
+            itemBuilder: (context,i) {
+              return Container(
+                margin: const EdgeInsets.only(
+                  left: 20,
+                  right: 10,
+                  bottom: 10,
                 ),
-                const SizedBox(width: 10,),
-                const Column(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 5,),
-                    Text(
-                      "We Are Chaos",
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(203, 200, 200, 1),
+                    Container(
+                      height: 70,
+                      width: 65,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/${popular[i]["img"]}"
+                          ),
+                        ),
                       ),
                     ),
-                    Row(
+                    const SizedBox(width: 10,),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 5,),
                         Text(
-                          "2023",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(132, 125, 125, 1),
-                          ),
-                        ),
-                        Text(
-                          " * ",
-                          style: TextStyle(
+                          "${popular[i]["name"]}",
+                          style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(203, 200, 200, 1),
+                            color: const Color.fromRGBO(203, 200, 200, 1),
                           ),
                         ),
-                        Text(
-                          "Easy Living",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(132, 125, 125, 1),
-                          ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${popular[i]["year"]}",
+                              style: GoogleFonts.inter(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: const Color.fromRGBO(132, 125, 125, 1),
+                              ),
+                            ),
+                            Text(
+                              " * ",
+                              style: GoogleFonts.inter(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color.fromRGBO(203, 200, 200, 1),
+                              ),
+                            ),
+                            Text(
+                              "${popular[i]["album"]}",
+                              style: GoogleFonts.inter(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: const Color.fromRGBO(132, 125, 125, 1),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-                const Spacer(),
-                SizedBox(
-                  height: 70,
-                  width: 65,
-                  child: IconButton(
-                    onPressed: () {
-                      
-                    },
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Color.fromRGBO(217, 217, 217, 1)
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(
-              left: 20,
-              right: 10,
-              bottom: 10,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 70,
-                  width: 65,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: const DecorationImage(
-                      image: AssetImage(
-                        "assets/gall05.png"
+                    const Spacer(),
+                    SizedBox(
+                      height: 70,
+                      width: 65,
+                      child: IconButton(
+                        onPressed: () {
+                          
+                        },
+                        icon: const Icon(
+                          Icons.more_vert,
+                          color: Color.fromRGBO(217, 217, 217, 1)
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10,),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 5,),
-                    Text(
-                      "Smile",
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(203, 200, 200, 1),
-                      ),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "2023",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(132, 125, 125, 1),
-                          ),
-                        ),
-                        Text(
-                          " * ",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(203, 200, 200, 1),
-                          ),
-                        ),
-                        Text(
-                          "Berrechid",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(132, 125, 125, 1),
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
-                const Spacer(),
-                SizedBox(
-                  height: 70,
-                  width: 65,
-                  child: IconButton(
-                    onPressed: () {
-                      
-                    },
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Color.fromRGBO(217, 217, 217, 1)
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              );
+            }
           ),
         ],
       ),
+      bottomNavigationBar: const BottomNavBarPage(),
     );
   }
 }

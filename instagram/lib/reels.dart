@@ -158,18 +158,19 @@ class _ReelsState extends State<Reels>{
           setState(() {
             bottmNBCount = index;
             if(index==0){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Assign1()));
+              //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Assign1()));
+              Navigator.pop(context);
             }
             if(index==1){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Search()),
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Search()),
               );
             }
             if(index==3){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Reels()),
-              );
+              // Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Reels()),
+              // );
             }
             if(index==4){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const Profile()),
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const Profile()),
               );
             }
           });

@@ -1,6 +1,6 @@
-import 'package:expense_maneger/graphscreen.dart';
+//import 'package:expense_maneger/graphscreen.dart';
 import 'package:expense_maneger/splashscreen.dart';
-import 'package:expense_maneger/trashscreen.dart';
+//import 'package:expense_maneger/trashscreen.dart';
 //import 'package:expense_maneger/transactionscreen.dart';
 import 'package:flutter/material.dart';
 

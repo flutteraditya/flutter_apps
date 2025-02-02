@@ -20,10 +20,6 @@ Future <void> getData()async{
     );
   }
   // log(res.body);
-  // log("${res.headers}");
-  // log("${res.request}");
-  // log("${res.statusCode}");
-  // log(res.reasonPhrase!);
   Map mp = json.decode(res.body);
   log("$mp");
   fetchedData = ModelForAll(mp).data!;
